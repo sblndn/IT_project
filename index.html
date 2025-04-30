@@ -1,24 +1,2811 @@
+<!-- 1.html -->
+<html lang="ru"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание универсального маркетплейса</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 0;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(59,130,246,0.1) 100%);
+            z-index: 1;
+        }
+        .content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 100px;
+        }
+        .icon-grid {
+            display: flex;
+            margin-top: 40px;
+        }
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 60px;
+        }
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+    </style>
+    <style>
+        .genspark-badge-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .genspark-modal {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 10000;
+            justify-content: end;
+        }
+
+        .genspark-modal-content {
+            background-color: white;
+            border-radius: 8px;
+            max-width: 450px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+        }
+        @media (max-width: 768px) {
+            .genspark-modal-content {
+                max-width: 90%;
+            }
+        }
+
+        .genspark-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .genspark-title {
+            margin-bottom: 8px;
+            font-weight: normal;
+            display: inline;
+            font-size: 14px;
+        }
+
+        .genspark-report {
+            color: #909499;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-bottom: 14px;
+            display: inline;
+        }
+
+        .genspark-info {
+            margin: 25px 0;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .genspark-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .genspark-remove-btn {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            color: #333;
+            padding: 4px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            flex: 1;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .genspark-go-btn {
+            background-color: #222;
+            border: none;
+            color: white;
+            padding: 4px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            flex: 1;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+    </style><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script></head>
+<body>
+<div class="slide">
+    <div class="gradient-overlay"></div>
+
+    <div class="content">
+        <div class="mb-4">
+            <h1 class="text-5xl font-bold text-blue-600">Создание универсального маркетплейса</h1>
+            <h2 class="text-3xl font-normal text-gray-600 mt-2">(веб-сайт и мобильное приложение)</h2>
+        </div>
+
+        <div class="mt-8 mb-12 max-w-2xl">
+            <p class="text-xl text-gray-700">
+                Проект по разработке онлайн-платформы для продажи
+                широкого ассортимента товаров от разных продавцов.
+            </p>
+        </div>
+
+        <div class="icon-grid">
+            <div class="icon-item">
+                <div class="icon-circle bg-blue-100">
+                    <i class="fas fa-shopping-cart text-4xl text-blue-600"></i>
+                </div>
+                <span class="text-lg font-medium text-gray-800">Онлайн-торговля</span>
+            </div>
+
+            <div class="icon-item">
+                <div class="icon-circle bg-blue-100">
+                    <i class="fas fa-laptop text-4xl text-blue-600"></i>
+                </div>
+                <span class="text-lg font-medium text-gray-800">Веб-платформа</span>
+            </div>
+
+            <div class="icon-item">
+                <div class="icon-circle bg-blue-100">
+                    <i class="fas fa-mobile-alt text-4xl text-blue-600"></i>
+                </div>
+                <span class="text-lg font-medium text-gray-800">Мобильное приложение</span>
+            </div>
+
+            <div class="icon-item">
+                <div class="icon-circle bg-blue-100">
+                    <i class="fas fa-users text-4xl text-blue-600"></i>
+                </div>
+                <span class="text-lg font-medium text-gray-800">Для продавцов и покупателей</span>
+            </div>
+        </div>
+
+        <div class="absolute bottom-12 left-100">
+
+        </div>
+    </div>
+</div>
+
+</body></html>
+
+<!-- 2.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Презентация</title>
+    <title>Инициализация проекта</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #3B82F6;
+            padding: 20px 40px;
+            color: white;
+        }
+        .content-grid {
+            display: flex;
+            height: calc(100% - 80px);
+        }
+        .info-box {
+            background-color: #f8fafc;
+            border-left: 4px solid #3B82F6;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .smart-item {
+            display: flex;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        .smart-letter {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+    </style>
 </head>
 <body>
-<h1>Презентация</h1>
-<ul>
-    <li><a href="1.html">Слайд 1</a></li>
-    <li><a href="2.html">Слайд 2</a></li>
-    <li><a href="3.html">Слайд 3</a></li>
-    <li><a href="4.html">Слайд 4</a></li>
-    <li><a href="5.html">Слайд 5</a></li>
-    <li><a href="6.html">Слайд 6</a></li>
-    <li><a href="7.html">Слайд 7</a></li>
-    <li><a href="8.html">Слайд 8</a></li>
-    <li><a href="9.html">Слайд 9</a></li>
-    <li><a href="10.html">Слайд 10</a></li>
-    <!-- Добавьте ссылки на все слайды -->
-</ul>
+<div class="slide">
+    <div class="header">
+        <h1 class="text-3xl font-bold">Инициализация проекта</h1>
+    </div>
+
+    <div class="content-grid p-8">
+        <div class="w-1/2 pr-6">
+            <div class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                    <i class="fas fa-lightbulb text-yellow-500 mr-2"></i> Формирование идеи
+                </h2>
+                <div class="info-box">
+                    <p class="font-medium text-gray-700">Идея проекта:</p>
+                    <p class="text-gray-600 mb-2">Универсальная торговая онлайн-платформа для продавцов и покупателей</p>
+
+                    <p class="font-medium text-gray-700 mt-3">Ценность:</p>
+                    <ul class="list-disc pl-5 text-gray-600">
+                        <li>Покупатели: все товары в одном месте</li>
+                        <li>Продавцы: доступ к широкой клиентской базе</li>
+                    </ul>
+
+                    <p class="font-medium text-gray-700 mt-3">Актуальность:</p>
+                    <p class="text-gray-600">Рост e-commerce и востребованность новых каналов сбыта</p>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                    <i class="fas fa-project-diagram text-blue-500 mr-2"></i> Концепция проекта
+                </h2>
+                <div class="info-box">
+                    <div class="flex mb-4">
+                        <div class="w-1/2">
+                            <div class="flex flex-col items-center">
+                                <i class="fas fa-laptop text-3xl text-blue-600 mb-2"></i>
+                                <p class="text-center font-medium">Веб-портал</p>
+                            </div>
+                        </div>
+                        <div class="w-1/2">
+                            <div class="flex flex-col items-center">
+                                <i class="fas fa-mobile-alt text-3xl text-blue-600 mb-2"></i>
+                                <p class="text-center font-medium">Мобильное приложение</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="font-medium text-gray-700">Ключевые пользователи:</p>
+                    <div class="flex mt-2">
+                        <div class="w-1/2 pr-2">
+                            <p class="font-medium text-blue-600"><i class="fas fa-shopping-cart mr-1"></i> Покупатели</p>
+                            <p class="text-sm text-gray-600">Поиск и покупка товаров</p>
+                        </div>
+                        <div class="w-1/2 pl-2">
+                            <p class="font-medium text-blue-600"><i class="fas fa-store mr-1"></i> Продавцы</p>
+                            <p class="text-sm text-gray-600">Размещение товаров и управление заказами</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-1/2 pl-6">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                <i class="fas fa-bullseye text-red-500 mr-2"></i> SMART-цели проекта
+            </h2>
+
+            <div class="smart-item">
+                <div class="smart-letter bg-red-500 text-white">S</div>
+                <div>
+                    <p class="font-bold">Specific (Конкретные)</p>
+                    <p class="text-gray-600 text-sm">Запуск MVP маркетплейса (веб + моб) к 1 сентября 2025</p>
+                </div>
+            </div>
+
+            <div class="smart-item">
+                <div class="smart-letter bg-blue-500 text-white">M</div>
+                <div>
+                    <p class="font-bold">Measurable (Измеримые)</p>
+                    <p class="text-gray-600 text-sm">100+ продавцов, 1000+ товаров, 5000 пользователей за 3 месяца</p>
+                </div>
+            </div>
+
+            <div class="smart-item">
+                <div class="smart-letter bg-green-500 text-white">A</div>
+                <div>
+                    <p class="font-bold">Achievable (Достижимые)</p>
+                    <p class="text-gray-600 text-sm">Рейтинг 4.5/5 в App Store/Google Play, отклик страниц ≤ 2 сек</p>
+                </div>
+            </div>
+
+            <div class="smart-item">
+                <div class="smart-letter bg-yellow-500 text-white">R</div>
+                <div>
+                    <p class="font-bold">Relevant (Значимые)</p>
+                    <p class="text-gray-600 text-sm">Соответствие стратегии компании по выходу в цифровую торговлю</p>
+                </div>
+            </div>
+
+            <div class="smart-item">
+                <div class="smart-letter bg-purple-500 text-white">T</div>
+                <div>
+                    <p class="font-bold">Time-bound (Ограниченные во времени)</p>
+                    <p class="text-gray-600 text-sm">Конкретные сроки для отслеживания прогресса</p>
+                </div>
+            </div>
+
+            <div class="info-box mt-6">
+                <h3 class="font-semibold text-gray-800 mb-2">Функциональные требования</h3>
+                <div class="flex flex-wrap">
+                    <div class="flex items-center w-1/2 mb-2">
+                        <i class="fas fa-search text-blue-500 mr-2"></i>
+                        <span class="text-sm">Каталог с поиском</span>
+                    </div>
+                    <div class="flex items-center w-1/2 mb-2">
+                        <i class="fas fa-credit-card text-blue-500 mr-2"></i>
+                        <span class="text-sm">Онлайн-оплата</span>
+                    </div>
+                    <div class="flex items-center w-1/2 mb-2">
+                        <i class="fas fa-star text-blue-500 mr-2"></i>
+                        <span class="text-sm">Рейтинги и отзывы</span>
+                    </div>
+                    <div class="flex items-center w-1/2 mb-2">
+                        <i class="fas fa-user-circle text-blue-500 mr-2"></i>
+                        <span class="text-sm">Личные кабинеты</span>
+                    </div>
+                    <div class="flex items-center w-1/2">
+                        <i class="fas fa-truck text-blue-500 mr-2"></i>
+                        <span class="text-sm">Отслеживание доставки</span>
+                    </div>
+                    <div class="flex items-center w-1/2">
+                        <i class="fas fa-headset text-blue-500 mr-2"></i>
+                        <span class="text-sm">Поддержка клиентов</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
+
+<!-- 3.html -->
+<html lang="ru"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Планирование содержания проекта</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #4F46E5;
+            padding: 20px 40px;
+            color: white;
+        }
+        .lifecycle-phase {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 180px;
+        }
+        .lifecycle-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+            z-index: 2;
+        }
+        .lifecycle-line {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            height: 2px;
+            background-color: #CBD5E1;
+            z-index: 1;
+        }
+        .mermaid-container {
+            width: 100%;
+            margin-top: 20px;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 15px;
+        }
+    </style>
+    <style>
+        .genspark-badge-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .genspark-modal {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 10000;
+            justify-content: end;
+        }
+
+        .genspark-modal-content {
+            background-color: white;
+            border-radius: 8px;
+            max-width: 450px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+        }
+        @media (max-width: 768px) {
+            .genspark-modal-content {
+                max-width: 90%;
+            }
+        }
+
+        .genspark-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .genspark-title {
+            margin-bottom: 8px;
+            font-weight: normal;
+            display: inline;
+            font-size: 14px;
+        }
+
+        .genspark-report {
+            color: #909499;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-bottom: 14px;
+            display: inline;
+        }
+
+        .genspark-info {
+            margin: 25px 0;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .genspark-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .genspark-remove-btn {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            color: #333;
+            padding: 4px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            flex: 1;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .genspark-go-btn {
+            background-color: #222;
+            border: none;
+            color: white;
+            padding: 4px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            flex: 1;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+    </style><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script></head>
+<body>
+<div class="slide">
+    <div class="header">
+        <h1 class="text-3xl font-bold">Планирование содержания проекта</h1>
+    </div>
+
+    <div class="p-8">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+            <i class="fas fa-project-diagram text-purple-600 mr-2"></i> Фазы жизненного цикла проекта
+        </h2>
+
+        <div class="relative flex justify-between my-8">
+            <div class="lifecycle-line w-full"></div>
+
+            <div class="lifecycle-phase">
+                <div class="lifecycle-icon bg-blue-100">
+                    <i class="fas fa-flag text-2xl text-blue-600"></i>
+                </div>
+                <p class="font-medium text-center">Инициация</p>
+                <p class="text-xs text-gray-500 text-center">Формулирование идеи, обоснование проекта</p>
+            </div>
+
+            <div class="lifecycle-phase">
+                <div class="lifecycle-icon bg-green-100">
+                    <i class="fas fa-tasks text-2xl text-green-600"></i>
+                </div>
+                <p class="font-medium text-center">Планирование</p>
+                <p class="text-xs text-gray-500 text-center">Разработка требований и планов работ</p>
+            </div>
+
+            <div class="lifecycle-phase">
+                <div class="lifecycle-icon bg-yellow-100">
+                    <i class="fas fa-code text-2xl text-yellow-600"></i>
+                </div>
+                <p class="font-medium text-center">Исполнение</p>
+                <p class="text-xs text-gray-500 text-center">Разработка и создание продукта</p>
+            </div>
+
+            <div class="lifecycle-phase">
+                <div class="lifecycle-icon bg-red-100">
+                    <i class="fas fa-chart-line text-2xl text-red-600"></i>
+                </div>
+                <p class="font-medium text-center">Мониторинг</p>
+                <p class="text-xs text-gray-500 text-center">Отслеживание прогресса, контроль</p>
+            </div>
+
+            <div class="lifecycle-phase">
+                <div class="lifecycle-icon bg-purple-100">
+                    <i class="fas fa-check-circle text-2xl text-purple-600"></i>
+                </div>
+                <p class="font-medium text-center">Завершение</p>
+                <p class="text-xs text-gray-500 text-center">Приемка, документация, закрытие</p>
+            </div>
+        </div>
+
+        <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">
+            <i class="fas fa-sitemap text-blue-600 mr-2"></i> Структура проекта: этапы и вехи
+        </h2>
+
+        <div class="mermaid-container">
+            <pre class="mermaid" data-processed="true"><svg id="mermaid-1746039566588" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="flowchart" style="max-width: 1826px;" viewBox="0 0 1826 326" role="graphics-document document" aria-roledescription="flowchart-v2"><style>#mermaid-1746039566588{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#000000;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-1746039566588 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#mermaid-1746039566588 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#mermaid-1746039566588 .error-icon{fill:#552222;}#mermaid-1746039566588 .error-text{fill:#552222;stroke:#552222;}#mermaid-1746039566588 .edge-thickness-normal{stroke-width:1px;}#mermaid-1746039566588 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-1746039566588 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-1746039566588 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-1746039566588 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-1746039566588 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-1746039566588 .marker{fill:#666;stroke:#666;}#mermaid-1746039566588 .marker.cross{stroke:#666;}#mermaid-1746039566588 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-1746039566588 p{margin:0;}#mermaid-1746039566588 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#000000;}#mermaid-1746039566588 .cluster-label text{fill:#333;}#mermaid-1746039566588 .cluster-label span{color:#333;}#mermaid-1746039566588 .cluster-label span p{background-color:transparent;}#mermaid-1746039566588 .label text,#mermaid-1746039566588 span{fill:#000000;color:#000000;}#mermaid-1746039566588 .node rect,#mermaid-1746039566588 .node circle,#mermaid-1746039566588 .node ellipse,#mermaid-1746039566588 .node polygon,#mermaid-1746039566588 .node path{fill:#eee;stroke:#999;stroke-width:1px;}#mermaid-1746039566588 .rough-node .label text,#mermaid-1746039566588 .node .label text,#mermaid-1746039566588 .image-shape .label,#mermaid-1746039566588 .icon-shape .label{text-anchor:middle;}#mermaid-1746039566588 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-1746039566588 .rough-node .label,#mermaid-1746039566588 .node .label,#mermaid-1746039566588 .image-shape .label,#mermaid-1746039566588 .icon-shape .label{text-align:center;}#mermaid-1746039566588 .node.clickable{cursor:pointer;}#mermaid-1746039566588 .root .anchor path{fill:#666!important;stroke-width:0;stroke:#666;}#mermaid-1746039566588 .arrowheadPath{fill:#333333;}#mermaid-1746039566588 .edgePath .path{stroke:#666;stroke-width:2.0px;}#mermaid-1746039566588 .flowchart-link{stroke:#666;fill:none;}#mermaid-1746039566588 .edgeLabel{background-color:white;text-align:center;}#mermaid-1746039566588 .edgeLabel p{background-color:white;}#mermaid-1746039566588 .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#mermaid-1746039566588 .labelBkg{background-color:rgba(255, 255, 255, 0.5);}#mermaid-1746039566588 .cluster rect{fill:hsl(0, 0%, 98.9215686275%);stroke:#707070;stroke-width:1px;}#mermaid-1746039566588 .cluster text{fill:#333;}#mermaid-1746039566588 .cluster span{color:#333;}#mermaid-1746039566588 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(-160, 0%, 93.3333333333%);border:1px solid #707070;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-1746039566588 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#000000;}#mermaid-1746039566588 rect.text{fill:none;stroke-width:0;}#mermaid-1746039566588 .icon-shape,#mermaid-1746039566588 .image-shape{background-color:white;text-align:center;}#mermaid-1746039566588 .icon-shape p,#mermaid-1746039566588 .image-shape p{background-color:white;padding:2px;}#mermaid-1746039566588 .icon-shape rect,#mermaid-1746039566588 .image-shape rect{opacity:0.5;background-color:white;fill:white;}#mermaid-1746039566588 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style><g><marker id="mermaid-1746039566588_flowchart-v2-pointEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-1746039566588_flowchart-v2-pointStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="4.5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 5 L 10 10 L 10 0 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-1746039566588_flowchart-v2-circleEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="11" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="mermaid-1746039566588_flowchart-v2-circleStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-1" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="mermaid-1746039566588_flowchart-v2-crossEnd" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="12" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-1746039566588_flowchart-v2-crossStart" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="-1" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path d="M806.195,42.166L694.829,49.639C583.464,57.111,360.732,72.055,249.366,83.028C138,94,138,101,138,104.5L138,108" id="L_A_B_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1746039566588_flowchart-v2-pointEnd)"></path><path d="M806.195,46.944L746.496,53.62C686.797,60.296,567.398,73.648,507.699,83.824C448,94,448,101,448,104.5L448,108" id="L_A_C_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1746039566588_flowchart-v2-pointEnd)"></path><path d="M832.519,62L820.099,66.167C807.679,70.333,782.84,78.667,770.42,86.333C758,94,758,101,758,104.5L758,108" id="L_A_D_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1746039566588_flowchart-v2-pointEnd)"></path><path d="M993.481,62L1005.901,66.167C1018.321,70.333,1043.16,78.667,1055.58,86.333C1068,94,1068,101,1068,104.5L1068,108" id="L_A_E_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1746039566588_flowchart-v2-pointEnd)"></path><path d="M1019.805,46.944L1079.504,53.62C1139.203,60.296,1258.602,73.648,1318.301,83.824C1378,94,1378,101,1378,104.5L1378,108" id="L_A_F_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1746039566588_flowchart-v2-pointEnd)"></path><path d="M1019.805,42.166L1131.171,49.639C1242.536,57.111,1465.268,72.055,1576.634,83.028C1688,94,1688,101,1688,104.5L1688,108" id="L_A_G_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1746039566588_flowchart-v2-pointEnd)"></path><path d="M138,190L138,194.167C138,198.333,138,206.667,138,216.333C138,226,138,237,138,242.5L138,248" id="L_B_B1_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1746039566588_flowchart-v2-pointEnd)"></path><path d="M448,190L448,194.167C448,198.333,448,206.667,448,214.333C448,222,448,229,448,232.5L448,236" id="L_C_C1_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1746039566588_flowchart-v2-pointEnd)"></path><path d="M758,190L758,194.167C758,198.333,758,206.667,758,214.333C758,222,758,229,758,232.5L758,236" id="L_D_D1_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1746039566588_flowchart-v2-pointEnd)"></path><path d="M1068,190L1068,194.167C1068,198.333,1068,206.667,1068,214.333C1068,222,1068,229,1068,232.5L1068,236" id="L_E_E1_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1746039566588_flowchart-v2-pointEnd)"></path><path d="M1378,190L1378,194.167C1378,198.333,1378,206.667,1378,214.333C1378,222,1378,229,1378,232.5L1378,236" id="L_F_F1_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1746039566588_flowchart-v2-pointEnd)"></path><path d="M1688,190L1688,194.167C1688,198.333,1688,206.667,1688,214.333C1688,222,1688,229,1688,232.5L1688,236" id="L_G_G1_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1746039566588_flowchart-v2-pointEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="flowchart-A-0" transform="translate(913, 35)"><rect class="basic label-container" style="fill:#4F46E5 !important" x="-106.8046875" y="-27" width="213.609375" height="54"></rect><g class="label" style="color:white !important" transform="translate(-76.8046875, -12)"><rect></rect><foreignObject width="153.609375" height="24"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel "><p>Проект Маркетплейс</p></span></div></foreignObject></g></g><g class="node default" id="flowchart-B-1" transform="translate(138, 151)"><rect class="basic label-container" style="" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="nodeLabel " style="font-size: 20px; font-weight: normal; text-decoration: none; font-style: normal; color: rgb(0, 0, 0); text-align: center;">1 Этап</span></div></foreignObject></g></g><g class="node default" id="flowchart-C-3" transform="translate(448, 151)"><rect class="basic label-container" style="" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="nodeLabel " style="font-size: 20px; font-weight: normal; text-decoration: none; font-style: normal; color: rgb(0, 0, 0); text-align: center;">2 Этап</span></div></foreignObject></g></g><g class="node default  " id="flowchart-D-5" transform="translate(758, 151)"><rect class="basic label-container" style="" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="nodeLabel " style="font-size: 20px; font-weight: normal; text-decoration: none; font-style: normal; color: rgb(0, 0, 0); text-align: center;">3 Этап</span></div></foreignObject></g></g><g class="node default  " id="flowchart-E-7" transform="translate(1068, 151)"><rect class="basic label-container" style="" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="nodeLabel " style="font-size: 20px; font-weight: normal; text-decoration: none; font-style: normal; color: rgb(0, 0, 0); text-align: center;">4 Этап</span></div></foreignObject></g></g><g class="node default  " id="flowchart-F-9" transform="translate(1378, 151)"><rect class="basic label-container" style="" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="nodeLabel " style="font-size: 20px; font-weight: normal; text-decoration: none; font-style: normal; color: rgb(0, 0, 0); text-align: center;">5 Этап</span></div></foreignObject></g></g><g class="node default  " id="flowchart-G-11" transform="translate(1688, 151)"><rect class="basic label-container" style="" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="nodeLabel " style="font-size: 20px; font-weight: normal; text-decoration: none; font-style: normal; color: rgb(0, 0, 0); text-align: center;">6 Этап</span></div></foreignObject></g></g><g class="node default  " id="flowchart-B1-13" transform="translate(138, 279)"><rect class="basic label-container" style="fill:#3B82F6 !important" x="-117.71875" y="-27" width="235.4375" height="54"></rect><g class="label" style="color:white !important" transform="translate(-87.71875, -12)"><rect></rect><foreignObject width="175.4375" height="24"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel "><p>Веха: Утвержденное ТЗ</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-C1-15" transform="translate(448, 279)"><rect class="basic label-container" style="fill:#3B82F6 !important" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="color:white !important" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div style="color: white !important; display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel "><p>Веха: Дизайн-проект интерфейсов</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-D1-17" transform="translate(758, 279)"><rect class="basic label-container" style="fill:#3B82F6 !important" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="color:white !important" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div style="color: white !important; display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel "><p>Веха: Бета-версия системы</p></span></div></foreignObject></g></g><g class="node default" id="flowchart-E1-19" transform="translate(1068, 279)"><rect class="basic label-container" style="fill:#3B82F6 !important" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="color:white !important" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div style="color: white !important; display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel "><p>Веха: Акт приемочного тестирования</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-F1-21" transform="translate(1378, 279)"><rect class="basic label-container" style="fill:#3B82F6 !important" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="color:white !important" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div style="color: white !important; display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel "><p>Веха: Релиз MVP маркетплейса</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-G1-23" transform="translate(1688, 279)"><rect class="basic label-container" style="fill:#3B82F6 !important" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="color:white !important" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div style="color: white !important; display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel "><p>Веха: Итоговый акт приемки</p></span></div></foreignObject></g></g></g></g></g></svg></pre>
+        </div>
+
+        <div class="flex mt-6">
+            <div class="w-1/2 pr-4">
+                <h3 class="text-xl font-medium text-gray-800 mb-3">
+                    <i class="fas fa-list-ul text-indigo-500 mr-2"></i> Ключевые задачи
+                </h3>
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li class="text-gray-700">Разработка бэкенд-сервиса и API</li>
+                        <li class="text-gray-700">Разработка фронтенда веб-сайта</li>
+                        <li class="text-gray-700">Разработка мобильного приложения</li>
+                        <li class="text-gray-700">Интеграция с платежными системами</li>
+                        <li class="text-gray-700">Функциональное и нагрузочное тестирование</li>
+                        <li class="text-gray-700">Публикация в App Store/Google Play</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="w-1/2 pl-4">
+                <h3 class="text-xl font-medium text-gray-800 mb-3">
+                    <i class="fas fa-clipboard-check text-green-500 mr-2"></i> Структура WBS
+                </h3>
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <p class="text-sm text-gray-700 mb-2">
+                        <span class="font-medium">Иерархическая структура работ:</span>
+                    </p>
+                    <div class="flex items-center mb-1">
+                        <i class="fas fa-caret-right text-blue-500 mr-1"></i>
+                        <p class="text-gray-700 text-sm">1. Инициация</p>
+                    </div>
+                    <div class="flex items-center mb-1">
+                        <i class="fas fa-caret-right text-blue-500 mr-1"></i>
+                        <p class="text-gray-700 text-sm">2. Планирование</p>
+                    </div>
+                    <div class="flex items-center mb-1">
+                        <i class="fas fa-caret-right text-blue-500 mr-1"></i>
+                        <p class="text-gray-700 text-sm">3. Реализация</p>
+                    </div>
+                    <div class="flex items-center mb-1">
+                        <i class="fas fa-caret-right text-blue-500 mr-1"></i>
+                        <p class="text-gray-700 text-sm">4. Тестирование и контроль качества</p>
+                    </div>
+                    <div class="flex items-center mb-1">
+                        <i class="fas fa-caret-right text-blue-500 mr-1"></i>
+                        <p class="text-gray-700 text-sm">5. Внедрение (Deployment)</p>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-caret-right text-blue-500 mr-1"></i>
+                        <p class="text-gray-700 text-sm">6. Завершение проекта</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        mermaid.initialize({ startOnLoad: true, theme: 'neutral', securityLevel: 'loose' });
+    });
+</script>
+
+<div class="mermaidTooltip" style="opacity: 0;"></div></body></html>
+
+<!-- 4.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Календарный план проекта</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #0891B2;
+            padding: 20px 40px;
+            color: white;
+        }
+        .gantt-bar {
+            height: 30px;
+            border-radius: 4px;
+            position: relative;
+        }
+        .gantt-bar::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -8px;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+        .planning {
+            background-color: #DBEAFE;
+            border: 2px solid #2563EB;
+        }
+        .planning::before {
+            border-left: 8px solid #2563EB;
+        }
+        .design {
+            background-color: #E0F2FE;
+            border: 2px solid #0EA5E9;
+        }
+        .design::before {
+            border-left: 8px solid #0EA5E9;
+        }
+        .development {
+            background-color: #FEF9C3;
+            border: 2px solid #CA8A04;
+        }
+        .development::before {
+            border-left: 8px solid #CA8A04;
+        }
+        .testing {
+            background-color: #FCE7F3;
+            border: 2px solid #DB2777;
+        }
+        .testing::before {
+            border-left: 8px solid #DB2777;
+        }
+        .deployment {
+            background-color: #DCFCE7;
+            border: 2px solid #16A34A;
+        }
+        .deployment::before {
+            border-left: 8px solid #16A34A;
+        }
+        .month-label {
+            width: calc(100% / 8);
+            text-align: center;
+            font-weight: 500;
+            color: #4B5563;
+        }
+        .gantt-container {
+            width: 100%;
+            padding: 0 20px;
+            position: relative;
+        }
+        .milestone {
+            position: absolute;
+            top: -22px;
+            width: 20px;
+            height: 20px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+    <div class="header">
+        <h1 class="text-3xl font-bold">Календарный план проекта</h1>
+    </div>
+
+    <div class="p-8">
+        <div class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                <i class="fas fa-calendar-alt text-cyan-600 mr-2"></i> Этапы и сроки выполнения
+            </h2>
+
+            <table class="w-full border-collapse">
+                <thead>
+                <tr class="bg-gray-100">
+                    <th class="border border-gray-300 p-3 text-left">Этап проекта</th>
+                    <th class="border border-gray-300 p-3 text-left">Сроки выполнения</th>
+                    <th class="border border-gray-300 p-3 text-left">Длительность</th>
+                    <th class="border border-gray-300 p-3 text-left">Ключевой результат (веха)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="border border-gray-300 p-3 font-medium">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded-full bg-blue-600 mr-2"></div>
+                            Планирование
+                        </div>
+                    </td>
+                    <td class="border border-gray-300 p-3">Январь 2025</td>
+                    <td class="border border-gray-300 p-3">1 месяц</td>
+                    <td class="border border-gray-300 p-3">Требования собраны и утверждены</td>
+                </tr>
+                <tr class="bg-gray-50">
+                    <td class="border border-gray-300 p-3 font-medium">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded-full bg-sky-500 mr-2"></div>
+                            Дизайн
+                        </div>
+                    </td>
+                    <td class="border border-gray-300 p-3">Февраль 2025</td>
+                    <td class="border border-gray-300 p-3">1 месяц</td>
+                    <td class="border border-gray-300 p-3">Готов комплект UX/UI прототипов</td>
+                </tr>
+                <tr>
+                    <td class="border border-gray-300 p-3 font-medium">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded-full bg-yellow-600 mr-2"></div>
+                            Разработка
+                        </div>
+                    </td>
+                    <td class="border border-gray-300 p-3">Март – Июнь 2025</td>
+                    <td class="border border-gray-300 p-3">4 месяца</td>
+                    <td class="border border-gray-300 p-3">Выпущена бета-версия платформы</td>
+                </tr>
+                <tr class="bg-gray-50">
+                    <td class="border border-gray-300 p-3 font-medium">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded-full bg-pink-600 mr-2"></div>
+                            Тестирование
+                        </div>
+                    </td>
+                    <td class="border border-gray-300 p-3">Июль 2025</td>
+                    <td class="border border-gray-300 p-3">1 месяц</td>
+                    <td class="border border-gray-300 p-3">Проведено приёмочное тестирование, устранены баги</td>
+                </tr>
+                <tr>
+                    <td class="border border-gray-300 p-3 font-medium">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded-full bg-green-600 mr-2"></div>
+                            Внедрение
+                        </div>
+                    </td>
+                    <td class="border border-gray-300 p-3">Август 2025</td>
+                    <td class="border border-gray-300 p-3">1 месяц</td>
+                    <td class="border border-gray-300 p-3">Запуск MVP (релиз продукта)</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6">
+                <i class="fas fa-tasks text-cyan-600 mr-2"></i> Диаграмма Ганта
+            </h2>
+
+            <div class="gantt-chart">
+                <!-- Month Labels -->
+                <div class="flex mb-2">
+                    <div class="w-1/4"></div> <!-- Space for labels -->
+                    <div class="w-3/4 flex">
+                        <div class="month-label">Янв</div>
+                        <div class="month-label">Фев</div>
+                        <div class="month-label">Мар</div>
+                        <div class="month-label">Апр</div>
+                        <div class="month-label">Май</div>
+                        <div class="month-label">Июн</div>
+                        <div class="month-label">Июл</div>
+                        <div class="month-label">Авг</div>
+                    </div>
+                </div>
+
+                <!-- Grid Lines -->
+                <div class="w-full flex mb-4">
+                    <div class="w-1/4"></div>
+                    <div class="w-3/4 flex">
+                        <div class="border-l border-gray-300 h-40 w-full"></div>
+                        <div class="border-l border-gray-300 h-40 w-full"></div>
+                        <div class="border-l border-gray-300 h-40 w-full"></div>
+                        <div class="border-l border-gray-300 h-40 w-full"></div>
+                        <div class="border-l border-gray-300 h-40 w-full"></div>
+                        <div class="border-l border-gray-300 h-40 w-full"></div>
+                        <div class="border-l border-gray-300 h-40 w-full"></div>
+                        <div class="border-l border-gray-300 h-40 w-full"></div>
+                    </div>
+                </div>
+
+                <!-- Gantt Bars -->
+                <div class="flex items-center mb-5">
+                    <div class="w-1/4 pr-4">
+                        <p class="font-medium text-right">Планирование</p>
+                    </div>
+                    <div class="w-3/4 gantt-container">
+                        <div class="milestone" style="left: calc(100% / 8 * 0.5);">
+                            <i class="fas fa-star text-xs text-yellow-500"></i>
+                        </div>
+                        <div class="gantt-bar planning" style="width: calc(100% / 8);"></div>
+                    </div>
+                </div>
+
+                <div class="flex items-center mb-5">
+                    <div class="w-1/4 pr-4">
+                        <p class="font-medium text-right">Дизайн</p>
+                    </div>
+                    <div class="w-3/4 gantt-container">
+                        <div class="milestone" style="left: calc(100% / 8 * 1.5);">
+                            <i class="fas fa-star text-xs text-yellow-500"></i>
+                        </div>
+                        <div class="gantt-bar design" style="width: calc(100% / 8); margin-left: calc(100% / 8);"></div>
+                    </div>
+                </div>
+
+                <div class="flex items-center mb-5">
+                    <div class="w-1/4 pr-4">
+                        <p class="font-medium text-right">Разработка</p>
+                    </div>
+                    <div class="w-3/4 gantt-container">
+                        <div class="milestone" style="left: calc(100% / 8 * 5.5);">
+                            <i class="fas fa-star text-xs text-yellow-500"></i>
+                        </div>
+                        <div class="gantt-bar development" style="width: calc(100% / 8 * 4); margin-left: calc(100% / 8 * 2);"></div>
+                    </div>
+                </div>
+
+                <div class="flex items-center mb-5">
+                    <div class="w-1/4 pr-4">
+                        <p class="font-medium text-right">Тестирование</p>
+                    </div>
+                    <div class="w-3/4 gantt-container">
+                        <div class="milestone" style="left: calc(100% / 8 * 6.5);">
+                            <i class="fas fa-star text-xs text-yellow-500"></i>
+                        </div>
+                        <div class="gantt-bar testing" style="width: calc(100% / 8); margin-left: calc(100% / 8 * 6);"></div>
+                    </div>
+                </div>
+
+                <div class="flex items-center">
+                    <div class="w-1/4 pr-4">
+                        <p class="font-medium text-right">Внедрение</p>
+                    </div>
+                    <div class="w-3/4 gantt-container">
+                        <div class="milestone" style="left: calc(100% / 8 * 7.5);">
+                            <i class="fas fa-flag text-xs text-green-600"></i>
+                        </div>
+                        <div class="gantt-bar deployment" style="width: calc(100% / 8); margin-left: calc(100% / 8 * 7);"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 flex justify-center">
+                <div class="bg-gray-100 p-4 rounded-lg shadow-sm">
+                    <p class="text-center text-gray-700 font-medium">
+                        <i class="fas fa-info-circle text-blue-500 mr-2"></i>
+                        Общая длительность проекта: 8 месяцев (Январь – Август 2025)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<!-- 5.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Планирование трудовых ресурсов</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #7E22CE;
+            padding: 20px 40px;
+            color: white;
+        }
+        .role-card {
+            border-radius: 8px;
+            padding: 15px;
+            height: 100%;
+            transition: transform 0.2s;
+            border: 1px solid #e5e7eb;
+        }
+        .role-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .role-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .matrix-header {
+            font-weight: bold;
+            text-align: center;
+            background-color: #f3f4f6;
+        }
+        .responsibility-cell {
+            width: 25%;
+            text-align: center;
+            padding: 8px;
+        }
+        .task-cell {
+            width: 25%;
+            padding: 8px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+    <div class="header">
+        <h1 class="text-3xl font-bold">Планирование трудовых ресурсов</h1>
+    </div>
+
+    <div class="p-6">
+        <div class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                <i class="fas fa-tasks text-purple-600 mr-2"></i> Матрица ответственности
+            </h2>
+
+            <div class="overflow-hidden border border-gray-300 rounded-lg">
+                <table class="w-full border-collapse">
+                    <thead>
+                    <tr class="bg-purple-100">
+                        <th class="border border-gray-300 p-2 text-left">Задача проекта</th>
+                        <th class="border border-gray-300 p-2 text-center">
+                            <div class="flex flex-col items-center">
+                                <span class="bg-blue-500 text-white px-2 py-1 rounded-md mb-1">O</span>
+                                <span>Отвечает</span>
+                            </div>
+                        </th>
+                        <th class="border border-gray-300 p-2 text-center">
+                            <div class="flex flex-col items-center">
+                                <span class="bg-yellow-500 text-white px-2 py-1 rounded-md mb-1">К</span>
+                                <span>Контролирует</span>
+                            </div>
+                        </th>
+                        <th class="border border-gray-300 p-2 text-center">
+                            <div class="flex flex-col items-center">
+                                <span class="bg-green-500 text-white px-2 py-1 rounded-md mb-1">С</span>
+                                <span>Согласует</span>
+                            </div>
+                        </th>
+                        <th class="border border-gray-300 p-2 text-center">
+                            <div class="flex flex-col items-center">
+                                <span class="bg-red-500 text-white px-2 py-1 rounded-md mb-1">У</span>
+                                <span>Утверждает</span>
+                            </div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="border border-gray-300 p-2 font-medium">Дизайн UX/UI</td>
+                        <td class="border border-gray-300 p-2 text-center">UX/UI дизайнер</td>
+                        <td class="border border-gray-300 p-2 text-center">Руководитель проекта</td>
+                        <td class="border border-gray-300 p-2 text-center">Маркетолог заказчика</td>
+                        <td class="border border-gray-300 p-2 text-center">Заказчик</td>
+                    </tr>
+                    <tr class="bg-gray-50">
+                        <td class="border border-gray-300 p-2 font-medium">Разработка back-end</td>
+                        <td class="border border-gray-300 p-2 text-center">Ведущий back-end разработчик</td>
+                        <td class="border border-gray-300 p-2 text-center">Технический руководитель</td>
+                        <td class="border border-gray-300 p-2 text-center">Бизнес-аналитик</td>
+                        <td class="border border-gray-300 p-2 text-center">Руководитель проекта</td>
+                    </tr>
+                    <tr>
+                        <td class="border border-gray-300 p-2 font-medium">Тестирование</td>
+                        <td class="border border-gray-300 p-2 text-center">Инженер QA</td>
+                        <td class="border border-gray-300 p-2 text-center">Руководитель проекта</td>
+                        <td class="border border-gray-300 p-2 text-center">Ведущий разработчик</td>
+                        <td class="border border-gray-300 p-2 text-center">Руководитель проекта</td>
+                    </tr>
+                    <tr class="bg-gray-50">
+                        <td class="border border-gray-300 p-2 font-medium">Внедрение (релиз)</td>
+                        <td class="border border-gray-300 p-2 text-center">Инженер DevOps</td>
+                        <td class="border border-gray-300 p-2 text-center">Руководитель проекта</td>
+                        <td class="border border-gray-300 p-2 text-center">Бизнес-аналитик</td>
+                        <td class="border border-gray-300 p-2 text-center">Заказчик</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                <i class="fas fa-users text-purple-600 mr-2"></i> Роли команды по Белбину
+            </h2>
+
+            <div class="grid grid-cols-3 gap-4">
+                <div class="role-card bg-blue-50">
+                    <div class="flex items-start">
+                        <div class="role-icon bg-blue-100">
+                            <i class="fas fa-compass text-blue-600"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="font-bold text-blue-700">Координатор</h3>
+                            <p class="text-sm text-gray-600 mb-1">Руководитель проекта</p>
+                            <p class="text-xs text-gray-500">Организует работу команды, распределяет задачи, определяет приоритеты</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="role-card bg-green-50">
+                    <div class="flex items-start">
+                        <div class="role-icon bg-green-100">
+                            <i class="fas fa-lightbulb text-green-600"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="font-bold text-green-700">Генератор идей</h3>
+                            <p class="text-sm text-gray-600 mb-1">UX/UI дизайнер</p>
+                            <p class="text-xs text-gray-500">Предлагает креативные решения, улучшения интерфейса</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="role-card bg-yellow-50">
+                    <div class="flex items-start">
+                        <div class="role-icon bg-yellow-100">
+                            <i class="fas fa-cogs text-yellow-600"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="font-bold text-yellow-700">Реализатор</h3>
+                            <p class="text-sm text-gray-600 mb-1">Разработчики</p>
+                            <p class="text-xs text-gray-500">Воплощают идеи в код, создают продукт согласно плану</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="role-card bg-red-50">
+                    <div class="flex items-start">
+                        <div class="role-icon bg-red-100">
+                            <i class="fas fa-check-double text-red-600"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="font-bold text-red-700">Доводящий до конца</h3>
+                            <p class="text-sm text-gray-600 mb-1">Инженер QA</p>
+                            <p class="text-xs text-gray-500">Проверяет качество, ищет и устраняет недостатки</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="role-card bg-indigo-50">
+                    <div class="flex items-start">
+                        <div class="role-icon bg-indigo-100">
+                            <i class="fas fa-balance-scale text-indigo-600"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="font-bold text-indigo-700">Аналитик-оценщик</h3>
+                            <p class="text-sm text-gray-600 mb-1">Бизнес-аналитик</p>
+                            <p class="text-xs text-gray-500">Оценивает требования, анализирует риски и выгоды</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="role-card bg-pink-50">
+                    <div class="flex items-start">
+                        <div class="role-icon bg-pink-100">
+                            <i class="fas fa-network-wired text-pink-600"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="font-bold text-pink-700">Исследователь ресурсов</h3>
+                            <p class="text-sm text-gray-600 mb-1">Маркетолог</p>
+                            <p class="text-xs text-gray-500">Изучает рынки, партнерства, привлекает пользователей</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="role-card bg-orange-50">
+                    <div class="flex items-start">
+                        <div class="role-icon bg-orange-100">
+                            <i class="fas fa-bolt text-orange-600"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="font-bold text-orange-700">Формирователь</h3>
+                            <p class="text-sm text-gray-600 mb-1">Технический руководитель</p>
+                            <p class="text-xs text-gray-500">Нацелен на результат, преодолевает препятствия</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="role-card bg-cyan-50">
+                    <div class="flex items-start">
+                        <div class="role-icon bg-cyan-100">
+                            <i class="fas fa-code text-cyan-600"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="font-bold text-cyan-700">Специалист</h3>
+                            <p class="text-sm text-gray-600 mb-1">Ведущий back-end разработчик</p>
+                            <p class="text-xs text-gray-500">Обладает глубокими техническими знаниями</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="role-card bg-violet-50">
+                    <div class="flex items-start">
+                        <div class="role-icon bg-violet-100">
+                            <i class="fas fa-hands-helping text-violet-600"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="font-bold text-violet-700">Коллективист</h3>
+                            <p class="text-sm text-gray-600 mb-1">Frontend-разработчик</p>
+                            <p class="text-xs text-gray-500">Поддерживает командный дух, сглаживает конфликты</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4 bg-purple-50 p-4 rounded-lg border border-purple-200">
+                <p class="text-sm text-purple-800 text-center">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    Баланс командных ролей обеспечивает продуктивность: у каждого участника есть своя сильная сторона,
+                    и роли дополняют друг друга, минимизируя пробелы в компетенциях команды.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<!-- 6.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Планирование рисков</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #DC2626;
+            padding: 20px 40px;
+            color: white;
+        }
+        .risk-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border-left: 4px solid;
+        }
+        .risk-severity-high {
+            border-color: #DC2626;
+            background-color: #FEE2E2;
+        }
+        .risk-severity-medium {
+            border-color: #F59E0B;
+            background-color: #FEF3C7;
+        }
+        .risk-severity-low {
+            border-color: #10B981;
+            background-color: #D1FAE5;
+        }
+        .response-card {
+            border-radius: 8px;
+            height: 100%;
+            transition: transform 0.2s;
+            border: 1px solid #e5e7eb;
+        }
+        .response-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .matrix-cell {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+        .matrix-label {
+            font-weight: 500;
+            font-size: 14px;
+            text-align: center;
+            color: #4B5563;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+    <div class="header">
+        <h1 class="text-3xl font-bold">Планирование рисков проекта</h1>
+    </div>
+
+    <div class="p-6">
+        <div class="flex mb-8">
+            <!-- Left Column - Risks List -->
+            <div class="w-2/3 pr-4">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                    <i class="fas fa-exclamation-triangle text-red-600 mr-2"></i> Возможные риски проекта
+                </h2>
+
+                <div class="risk-item risk-severity-high">
+                    <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-red-100 rounded-full mr-3">
+                        <i class="fas fa-calendar-times text-red-600"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">Срыв сроков разработки</p>
+                        <p class="text-sm text-gray-600">Задержки в реализации функционала, недооценка сложности задач</p>
+                    </div>
+                </div>
+
+                <div class="risk-item risk-severity-high">
+                    <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-red-100 rounded-full mr-3">
+                        <i class="fas fa-dollar-sign text-red-600"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">Превышение бюджета</p>
+                        <p class="text-sm text-gray-600">Фактические затраты больше запланированных, дополнительные расходы</p>
+                    </div>
+                </div>
+
+                <div class="risk-item risk-severity-medium">
+                    <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-yellow-100 rounded-full mr-3">
+                        <i class="fas fa-user-minus text-yellow-600"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">Уход ключевых сотрудников</p>
+                        <p class="text-sm text-gray-600">Потеря важных членов команды, снижение скорости работы</p>
+                    </div>
+                </div>
+
+                <div class="risk-item risk-severity-medium">
+                    <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-yellow-100 rounded-full mr-3">
+                        <i class="fas fa-bug text-yellow-600"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">Технические риски</p>
+                        <p class="text-sm text-gray-600">Сбои в работе внешних сервисов, проблемы с производительностью</p>
+                    </div>
+                </div>
+
+                <div class="risk-item risk-severity-low">
+                    <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-green-100 rounded-full mr-3">
+                        <i class="fas fa-thumbs-down text-green-600"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">Риски качества</p>
+                        <p class="text-sm text-gray-600">Продукт не удовлетворяет ожидания пользователей</p>
+                    </div>
+                </div>
+
+                <div class="risk-item risk-severity-low">
+                    <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-green-100 rounded-full mr-3">
+                        <i class="fas fa-chart-line text-green-600 transform rotate-180"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">Низкий спрос на платформу</p>
+                        <p class="text-sm text-gray-600">Медленный рост пользователей, недостаточный интерес продавцов</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Risk Matrix -->
+            <div class="w-1/3 pl-4">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                    <i class="fas fa-chart-area text-red-600 mr-2"></i> Матрица рисков
+                </h2>
+
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <!-- Risk Matrix Header -->
+                    <div class="flex mb-2">
+                        <div class="w-1/4"></div>
+                        <div class="w-3/4 flex">
+                            <div class="matrix-label w-1/3">Низкое влияние</div>
+                            <div class="matrix-label w-1/3">Среднее влияние</div>
+                            <div class="matrix-label w-1/3">Высокое влияние</div>
+                        </div>
+                    </div>
+
+                    <!-- Risk Matrix Row 1 -->
+                    <div class="flex mb-2">
+                        <div class="w-1/4 flex items-center justify-end pr-2">
+                            <span class="matrix-label">Высокая вероятность</span>
+                        </div>
+                        <div class="w-3/4 flex">
+                            <div class="matrix-cell bg-yellow-500 m-1">
+                                <span>5</span>
+                            </div>
+                            <div class="matrix-cell bg-red-500 m-1">
+                                <span>6</span>
+                            </div>
+                            <div class="matrix-cell bg-red-700 m-1">
+                                <span>1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Risk Matrix Row 2 -->
+                    <div class="flex mb-2">
+                        <div class="w-1/4 flex items-center justify-end pr-2">
+                            <span class="matrix-label">Средняя вероятность</span>
+                        </div>
+                        <div class="w-3/4 flex">
+                            <div class="matrix-cell bg-green-500 m-1">
+                                <span></span>
+                            </div>
+                            <div class="matrix-cell bg-yellow-500 m-1">
+                                <span>3,4</span>
+                            </div>
+                            <div class="matrix-cell bg-red-500 m-1">
+                                <span>2</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Risk Matrix Row 3 -->
+                    <div class="flex">
+                        <div class="w-1/4 flex items-center justify-end pr-2">
+                            <span class="matrix-label">Низкая вероятность</span>
+                        </div>
+                        <div class="w-3/4 flex">
+                            <div class="matrix-cell bg-green-500 m-1">
+                                <span></span>
+                            </div>
+                            <div class="matrix-cell bg-green-500 m-1">
+                                <span></span>
+                            </div>
+                            <div class="matrix-cell bg-yellow-500 m-1">
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Legend -->
+                    <div class="mt-4 flex justify-between">
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-green-500 mr-1"></div>
+                            <span class="text-xs">Низкий</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-yellow-500 mr-1"></div>
+                            <span class="text-xs">Средний</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-red-500 mr-1"></div>
+                            <span class="text-xs">Высокий</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-red-700 mr-1"></div>
+                            <span class="text-xs">Критический</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Methods of Risk Response -->
+        <div>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                <i class="fas fa-shield-alt text-red-600 mr-2"></i> Методы реагирования на риски
+            </h2>
+
+            <div class="grid grid-cols-4 gap-4">
+                <div class="response-card bg-blue-50 p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full">
+                            <i class="fas fa-ban text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold text-blue-700 ml-2">Избежание риска</h3>
+                    </div>
+                    <ul class="text-sm text-gray-600 list-disc pl-5">
+                        <li>Корректировка плана проекта</li>
+                        <li>Изменение объема работ</li>
+                        <li>Упрощение функциональности MVP</li>
+                    </ul>
+                </div>
+
+                <div class="response-card bg-yellow-50 p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 flex items-center justify-center bg-yellow-100 rounded-full">
+                            <i class="fas fa-compress-arrows-alt text-yellow-600"></i>
+                        </div>
+                        <h3 class="font-bold text-yellow-700 ml-2">Снижение риска</h3>
+                    </div>
+                    <ul class="text-sm text-gray-600 list-disc pl-5">
+                        <li>Привлечение экспертов</li>
+                        <li>Дополнительное тестирование</li>
+                        <li>Создание временных резервов</li>
+                    </ul>
+                </div>
+
+                <div class="response-card bg-purple-50 p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 flex items-center justify-center bg-purple-100 rounded-full">
+                            <i class="fas fa-exchange-alt text-purple-600"></i>
+                        </div>
+                        <h3 class="font-bold text-purple-700 ml-2">Передача риска</h3>
+                    </div>
+                    <ul class="text-sm text-gray-600 list-disc pl-5">
+                        <li>Страхование</li>
+                        <li>Договоры с подрядчиками</li>
+                        <li>Аутсорсинг сложных модулей</li>
+                    </ul>
+                </div>
+
+                <div class="response-card bg-green-50 p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 flex items-center justify-center bg-green-100 rounded-full">
+                            <i class="fas fa-check text-green-600"></i>
+                        </div>
+                        <h3 class="font-bold text-green-700 ml-2">Принятие риска</h3>
+                    </div>
+                    <ul class="text-sm text-gray-600 list-disc pl-5">
+                        <li>Резерв бюджета на риски</li>
+                        <li>Мониторинг ситуации</li>
+                        <li>Подготовка плана реагирования</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<!-- 7.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Планирование бюджета проекта</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #047857;
+            padding: 20px 40px;
+            color: white;
+        }
+        .resource-bar {
+            height: 30px;
+            border-radius: 4px;
+        }
+        .chart-container {
+            position: relative;
+            height: 250px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+    <div class="header">
+        <h1 class="text-3xl font-bold">Планирование бюджета проекта</h1>
+    </div>
+
+    <div class="p-6">
+        <div class="grid grid-cols-2 gap-6">
+            <!-- Left Column -->
+            <div>
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                    <i class="fas fa-calendar-alt text-green-600 mr-2"></i> Календарный план с распределением ресурсов
+                </h2>
+
+                <div class="bg-gray-50 p-4 rounded-lg shadow-sm mb-4">
+                    <table class="w-full text-sm">
+                        <thead>
+                        <tr class="bg-gray-200">
+                            <th class="py-2 px-3 text-left">Этап</th>
+                            <th class="py-2 px-3 text-center">Длительность</th>
+                            <th class="py-2 px-3 text-center">Состав команды</th>
+                            <th class="py-2 px-3 text-center">Трудозатраты</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="border-b border-gray-200">
+                            <td class="py-2 px-3 font-medium">Планирование</td>
+                            <td class="py-2 px-3 text-center">1 месяц</td>
+                            <td class="py-2 px-3 text-center">3 чел.</td>
+                            <td class="py-2 px-3 text-center">3 чел.-мес</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 bg-gray-50">
+                            <td class="py-2 px-3 font-medium">Дизайн</td>
+                            <td class="py-2 px-3 text-center">1 месяц</td>
+                            <td class="py-2 px-3 text-center">2 чел.</td>
+                            <td class="py-2 px-3 text-center">2 чел.-мес</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="py-2 px-3 font-medium">Разработка</td>
+                            <td class="py-2 px-3 text-center">4 месяца</td>
+                            <td class="py-2 px-3 text-center">5 чел.</td>
+                            <td class="py-2 px-3 text-center">20 чел.-мес</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 bg-gray-50">
+                            <td class="py-2 px-3 font-medium">Тестирование</td>
+                            <td class="py-2 px-3 text-center">1 месяц</td>
+                            <td class="py-2 px-3 text-center">3 чел.</td>
+                            <td class="py-2 px-3 text-center">3 чел.-мес</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-3 font-medium">Внедрение</td>
+                            <td class="py-2 px-3 text-center">1 месяц</td>
+                            <td class="py-2 px-3 text-center">2 чел.</td>
+                            <td class="py-2 px-3 text-center">2 чел.-мес</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr class="bg-green-50">
+                            <td class="py-2 px-3 font-bold">Итого</td>
+                            <td class="py-2 px-3 text-center font-bold">8 месяцев</td>
+                            <td class="py-2 px-3 text-center">–</td>
+                            <td class="py-2 px-3 text-center font-bold">28 чел.-мес</td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <!-- Resource Distribution Visualization -->
+                <div class="mt-6">
+                    <h3 class="text-xl font-medium text-gray-700 mb-2">Распределение команды по этапам:</h3>
+
+                    <div class="flex items-center mb-3">
+                        <div class="w-1/3 pr-2 text-right text-sm">Январь</div>
+                        <div class="w-2/3">
+                            <div class="resource-bar bg-blue-500 text-white text-center flex items-center justify-center" style="width: 60%">
+                                3 чел.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center mb-3">
+                        <div class="w-1/3 pr-2 text-right text-sm">Февраль</div>
+                        <div class="w-2/3">
+                            <div class="resource-bar bg-blue-400 text-white text-center flex items-center justify-center" style="width: 40%">
+                                2 чел.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center mb-3">
+                        <div class="w-1/3 pr-2 text-right text-sm">Март-Июнь</div>
+                        <div class="w-2/3">
+                            <div class="resource-bar bg-blue-600 text-white text-center flex items-center justify-center" style="width: 100%">
+                                5 чел.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center mb-3">
+                        <div class="w-1/3 pr-2 text-right text-sm">Июль</div>
+                        <div class="w-2/3">
+                            <div class="resource-bar bg-blue-500 text-white text-center flex items-center justify-center" style="width: 60%">
+                                3 чел.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center mb-3">
+                        <div class="w-1/3 pr-2 text-right text-sm">Август</div>
+                        <div class="w-2/3">
+                            <div class="resource-bar bg-blue-400 text-white text-center flex items-center justify-center" style="width: 40%">
+                                2 чел.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div>
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                    <i class="fas fa-coins text-green-600 mr-2"></i> Бюджет проекта (оценка затрат)
+                </h2>
+
+                <div class="bg-gray-50 p-4 rounded-lg shadow-sm mb-6">
+                    <table class="w-full">
+                        <thead>
+                        <tr class="bg-gray-200">
+                            <th class="py-3 px-4 text-left">Статья расходов</th>
+                            <th class="py-3 px-4 text-right">Оценочная сумма</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="border-b border-gray-200">
+                            <td class="py-3 px-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-users text-blue-500 mr-2"></i>
+                                    <span>Трудовые ресурсы (28 чел.-мес)</span>
+                                </div>
+                            </td>
+                            <td class="py-3 px-4 text-right font-medium">~5,6 млн руб.</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 bg-gray-50">
+                            <td class="py-3 px-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-server text-purple-500 mr-2"></i>
+                                    <span>Инфраструктура и ПО</span>
+                                </div>
+                            </td>
+                            <td class="py-3 px-4 text-right font-medium">~1,0 млн руб.</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="py-3 px-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+                                    <span>Резерв на риски (10%)</span>
+                                </div>
+                            </td>
+                            <td class="py-3 px-4 text-right font-medium">~0,6 млн руб.</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr class="bg-green-100">
+                            <td class="py-3 px-4 font-bold text-green-800">ИТОГО прогноз</td>
+                            <td class="py-3 px-4 text-right font-bold text-green-800">~7,2 млн руб.</td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <!-- Budget Chart -->
+                <div class="chart-container">
+                    <canvas id="budgetChart"></canvas>
+                </div>
+
+                <div class="mt-4 bg-green-50 p-4 rounded-lg border border-green-200">
+                    <div class="flex items-start">
+                        <i class="fas fa-info-circle text-green-600 mt-1 mr-2 text-lg"></i>
+                        <div>
+                            <p class="text-sm text-green-800">
+                                Основную долю бюджета (~78%) составляют трудозатраты команды разработки.
+                                Ежемесячно руководитель проекта контролирует исполнение бюджета для своевременного обнаружения перерасхода.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Create Budget Pie Chart
+        const budgetCtx = document.getElementById('budgetChart').getContext('2d');
+        const budgetChart = new Chart(budgetCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Трудовые ресурсы', 'Инфраструктура и ПО', 'Резерв на риски'],
+                datasets: [{
+                    data: [5.6, 1.0, 0.6],
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.7)',  // blue
+                        'rgba(124, 58, 237, 0.7)',  // purple
+                        'rgba(234, 179, 8, 0.7)'    // yellow
+                    ],
+                    borderColor: [
+                        'rgba(59, 130, 246, 1)',
+                        'rgba(124, 58, 237, 1)',
+                        'rgba(234, 179, 8, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            boxWidth: 15,
+                            padding: 15,
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += context.raw + ' млн руб. (' +
+                                Math.round(context.raw / 7.2 * 100) + '%)';
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
+
+<!-- 8.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Канбан-доска проекта</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2563EB;
+            padding: 20px 40px;
+            color: white;
+        }
+        .kanban-board {
+            display: flex;
+            min-height: 500px;
+            gap: 16px;
+            padding: 16px;
+        }
+        .kanban-column {
+            background-color: #F3F4F6;
+            border-radius: 8px;
+            width: 100%;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .column-header {
+            padding: 12px;
+            font-weight: 600;
+            border-bottom: 1px solid #E5E7EB;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .column-content {
+            padding: 12px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        .task-card {
+            background-color: white;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .task-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .priority-high {
+            border-left-color: #EF4444;
+        }
+        .priority-medium {
+            border-left-color: #F59E0B;
+        }
+        .priority-low {
+            border-left-color: #10B981;
+        }
+        .task-title {
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+        .task-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #6B7280;
+        }
+        .column-count {
+            background-color: #E5E7EB;
+            color: #4B5563;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+    <div class="header">
+        <h1 class="text-3xl font-bold">Канбан-доска проекта</h1>
+    </div>
+
+    <div class="p-4">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-semibold text-gray-800">
+                <i class="fas fa-tasks text-blue-600 mr-2"></i> Визуальный подход к управлению задачами
+            </h2>
+
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center">
+                    <span class="w-3 h-3 inline-block bg-red-500 mr-1 rounded-sm"></span>
+                    <span class="text-sm text-gray-700">Высокий приоритет</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="w-3 h-3 inline-block bg-yellow-500 mr-1 rounded-sm"></span>
+                    <span class="text-sm text-gray-700">Средний приоритет</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="w-3 h-3 inline-block bg-green-500 mr-1 rounded-sm"></span>
+                    <span class="text-sm text-gray-700">Низкий приоритет</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="kanban-board">
+            <!-- Column 1: Идеи -->
+            <div class="kanban-column">
+                <div class="column-header bg-gray-100">
+                    <div class="flex items-center">
+                        <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                        <span>Идеи</span>
+                    </div>
+                    <span class="column-count">3</span>
+                </div>
+                <div class="column-content">
+                    <div class="task-card priority-low">
+                        <div class="task-title">Интеграция с маркетплейсами</div>
+                        <p class="text-xs text-gray-600 mb-2">Экспорт товаров на популярные площадки</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="far fa-clock mr-1"></i> Не оценено</span>
+                            <span>—</span>
+                        </div>
+                    </div>
+                    <div class="task-card priority-medium">
+                        <div class="task-title">Система лояльности</div>
+                        <p class="text-xs text-gray-600 mb-2">Бонусы, купоны, кешбэк для покупателей</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="far fa-clock mr-1"></i> Не оценено</span>
+                            <span>—</span>
+                        </div>
+                    </div>
+                    <div class="task-card priority-low">
+                        <div class="task-title">Мобильное приложение v2</div>
+                        <p class="text-xs text-gray-600 mb-2">Расширение функционала для второй версии</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="far fa-clock mr-1"></i> Не оценено</span>
+                            <span>—</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 2: Запланировано -->
+            <div class="kanban-column">
+                <div class="column-header bg-blue-50">
+                    <div class="flex items-center">
+                        <i class="fas fa-list-ul text-blue-500 mr-2"></i>
+                        <span>Запланировано</span>
+                    </div>
+                    <span class="column-count">4</span>
+                </div>
+                <div class="column-content">
+                    <div class="task-card priority-high">
+                        <div class="task-title">Аутентификация пользователей</div>
+                        <p class="text-xs text-gray-600 mb-2">Регистрация, авторизация, восстановление пароля</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="far fa-clock mr-1"></i> 10 дней</span>
+                            <span class="bg-blue-100 text-blue-800 py-1 px-2 rounded text-xs">Бэкенд</span>
+                        </div>
+                    </div>
+                    <div class="task-card priority-medium">
+                        <div class="task-title">Дизайн главной страницы</div>
+                        <p class="text-xs text-gray-600 mb-2">Прототип и макет в Figma</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="far fa-clock mr-1"></i> 5 дней</span>
+                            <span class="bg-purple-100 text-purple-800 py-1 px-2 rounded text-xs">Дизайн</span>
+                        </div>
+                    </div>
+                    <div class="task-card priority-medium">
+                        <div class="task-title">Архитектура БД</div>
+                        <p class="text-xs text-gray-600 mb-2">Структура таблиц и связи</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="far fa-clock mr-1"></i> 7 дней</span>
+                            <span class="bg-blue-100 text-blue-800 py-1 px-2 rounded text-xs">Бэкенд</span>
+                        </div>
+                    </div>
+                    <div class="task-card priority-low">
+                        <div class="task-title">Настройка CI/CD</div>
+                        <p class="text-xs text-gray-600 mb-2">Автоматизация сборки и деплоя</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="far fa-clock mr-1"></i> 3 дня</span>
+                            <span class="bg-gray-100 text-gray-800 py-1 px-2 rounded text-xs">DevOps</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 3: В работе -->
+            <div class="kanban-column">
+                <div class="column-header bg-indigo-50">
+                    <div class="flex items-center">
+                        <i class="fas fa-spinner text-indigo-500 mr-2"></i>
+                        <span>В работе</span>
+                    </div>
+                    <span class="column-count">3</span>
+                </div>
+                <div class="column-content">
+                    <div class="task-card priority-high">
+                        <div class="task-title">API каталога товаров</div>
+                        <p class="text-xs text-gray-600 mb-2">Эндпоинты для работы с товарами</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="fas fa-user-circle mr-1"></i> Алексей</span>
+                            <span class="bg-blue-100 text-blue-800 py-1 px-2 rounded text-xs">Бэкенд</span>
+                        </div>
+                    </div>
+                    <div class="task-card priority-high">
+                        <div class="task-title">Корзина покупок</div>
+                        <p class="text-xs text-gray-600 mb-2">Компонент для добавления/удаления товаров</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="fas fa-user-circle mr-1"></i> Мария</span>
+                            <span class="bg-yellow-100 text-yellow-800 py-1 px-2 rounded text-xs">Фронтенд</span>
+                        </div>
+                    </div>
+                    <div class="task-card priority-medium">
+                        <div class="task-title">Прототип мобильного приложения</div>
+                        <p class="text-xs text-gray-600 mb-2">Основные экраны и навигация</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="fas fa-user-circle mr-1"></i> Антон</span>
+                            <span class="bg-purple-100 text-purple-800 py-1 px-2 rounded text-xs">Дизайн</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 4: Тестирование -->
+            <div class="kanban-column">
+                <div class="column-header bg-yellow-50">
+                    <div class="flex items-center">
+                        <i class="fas fa-vial text-yellow-500 mr-2"></i>
+                        <span>Тестирование</span>
+                    </div>
+                    <span class="column-count">2</span>
+                </div>
+                <div class="column-content">
+                    <div class="task-card priority-high">
+                        <div class="task-title">Модуль регистрации продавцов</div>
+                        <p class="text-xs text-gray-600 mb-2">Форма и валидация данных</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="fas fa-user-circle mr-1"></i> Иван</span>
+                            <span class="bg-yellow-100 text-yellow-800 py-1 px-2 rounded text-xs">Фронтенд</span>
+                        </div>
+                    </div>
+                    <div class="task-card priority-medium">
+                        <div class="task-title">Система поиска товаров</div>
+                        <p class="text-xs text-gray-600 mb-2">Поиск с фильтрами и сортировкой</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="fas fa-user-circle mr-1"></i> Алексей</span>
+                            <span class="bg-blue-100 text-blue-800 py-1 px-2 rounded text-xs">Бэкенд</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 5: Выполнено -->
+            <div class="kanban-column">
+                <div class="column-header bg-green-50">
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                        <span>Выполнено</span>
+                    </div>
+                    <span class="column-count">3</span>
+                </div>
+                <div class="column-content">
+                    <div class="task-card priority-high opacity-60">
+                        <div class="task-title">Стартовая структура проекта</div>
+                        <p class="text-xs text-gray-600 mb-2">Настройка репозитория и окружения</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="fas fa-calendar-check mr-1"></i> 10.01.25</span>
+                            <span class="bg-gray-100 text-gray-800 py-1 px-2 rounded text-xs">DevOps</span>
+                        </div>
+                    </div>
+                    <div class="task-card priority-medium opacity-60">
+                        <div class="task-title">Логотип и брендинг</div>
+                        <p class="text-xs text-gray-600 mb-2">Создание визуальной айдентики</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="fas fa-calendar-check mr-1"></i> 15.01.25</span>
+                            <span class="bg-purple-100 text-purple-800 py-1 px-2 rounded text-xs">Дизайн</span>
+                        </div>
+                    </div>
+                    <div class="task-card priority-low opacity-60">
+                        <div class="task-title">ТЗ проекта</div>
+                        <p class="text-xs text-gray-600 mb-2">Документация требований</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="fas fa-calendar-check mr-1"></i> 05.01.25</span>
+                            <span class="bg-pink-100 text-pink-800 py-1 px-2 rounded text-xs">Аналитика</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4 bg-blue-50 p-4 rounded-lg border border-blue-200">
+            <h3 class="font-semibold text-blue-800 mb-2">Преимущества Канбан-подхода:</h3>
+            <div class="grid grid-cols-3 gap-4">
+                <div class="flex items-start">
+                    <i class="fas fa-eye text-blue-500 mt-1 mr-2"></i>
+                    <p class="text-sm text-gray-700">Наглядность рабочего процесса и текущего состояния проекта</p>
+                </div>
+                <div class="flex items-start">
+                    <i class="fas fa-route text-blue-500 mt-1 mr-2"></i>
+                    <p class="text-sm text-gray-700">Быстрое обнаружение узких мест в процессе разработки</p>
+                </div>
+                <div class="flex items-start">
+                    <i class="fas fa-sync-alt text-blue-500 mt-1 mr-2"></i>
+                    <p class="text-sm text-gray-700">Постоянное обновление и актуальность информации о задачах</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<!-- 9.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Системные требования проекта</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #6366F1;
+            padding: 20px 40px;
+            color: white;
+        }
+        .req-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            transition: transform 0.2s;
+            border-top: 4px solid;
+        }
+        .req-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        .req-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .architecture {
+            border-color: #6366F1;
+        }
+        .performance {
+            border-color: #F59E0B;
+        }
+        .availability {
+            border-color: #10B981;
+        }
+        .security {
+            border-color: #EF4444;
+        }
+        .integration {
+            border-color: #8B5CF6;
+        }
+        .mermaid-container {
+            background-color: #F9FAFB;
+            border-radius: 8px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+    <div class="header">
+        <h1 class="text-3xl font-bold">Системные требования проекта</h1>
+    </div>
+
+    <div class="p-6">
+        <!-- Architecture Section -->
+        <div class="mb-6">
+            <div class="req-card architecture p-4">
+                <div class="flex items-start">
+                    <div class="req-icon bg-indigo-100">
+                        <i class="fas fa-sitemap text-2xl text-indigo-600"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800 mb-2">Архитектура и технологии</h2>
+
+                        <div class="mermaid-container mt-2 mb-3">
+                                <pre class="mermaid">
+                                    flowchart LR
+                                        A[Клиенты] --> B[Веб-сайт]
+                                        A --> C[Мобильные приложения]
+                                        B & C --> D[API Gateway]
+                                        D --> E[Микросервисы]
+                                        E --> F[(Реляционная БД)]
+                                        E --> G[(NoSQL БД)]
+                                        D --> H[Внешние API]
+
+                                        style A fill:#DBEAFE
+                                        style B fill:#E0F2FE
+                                        style C fill:#E0F2FE
+                                        style D fill:#FEF3C7
+                                        style E fill:#FEF3C7
+                                        style F fill:#D1FAE5
+                                        style G fill:#D1FAE5
+                                        style H fill:#FCE7F3
+                                </pre>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-3">
+                            <div class="bg-gray-50 p-2 rounded">
+                                <p class="text-sm font-medium text-gray-700">Клиентская часть:</p>
+                                <p class="text-xs text-gray-600">React.js, React Native</p>
+                            </div>
+                            <div class="bg-gray-50 p-2 rounded">
+                                <p class="text-sm font-medium text-gray-700">Серверная часть:</p>
+                                <p class="text-xs text-gray-600">Node.js, Java, Python</p>
+                            </div>
+                            <div class="bg-gray-50 p-2 rounded">
+                                <p class="text-sm font-medium text-gray-700">Базы данных:</p>
+                                <p class="text-xs text-gray-600">PostgreSQL, MongoDB</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Two Cards Row -->
+        <div class="grid grid-cols-2 gap-6 mb-6">
+            <!-- Performance Card -->
+            <div class="req-card performance p-4">
+                <div class="flex items-start">
+                    <div class="req-icon bg-yellow-100">
+                        <i class="fas fa-tachometer-alt text-2xl text-yellow-600"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800 mb-2">Производительность</h2>
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex items-center">
+                                <i class="fas fa-users text-yellow-500 mr-2"></i>
+                                <span>Поддержка 10000+ одновременных пользователей</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-clock text-yellow-500 mr-2"></i>
+                                <span>Время отклика операций ≤ 2-3 сек при средней нагрузке</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-arrows-alt-h text-yellow-500 mr-2"></i>
+                                <span>Масштабируемость через балансировку нагрузки</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-server text-yellow-500 mr-2"></i>
+                                <span>Горизонтальное масштабирование серверов</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Availability Card -->
+            <div class="req-card availability p-4">
+                <div class="flex items-start">
+                    <div class="req-icon bg-green-100">
+                        <i class="fas fa-heartbeat text-2xl text-green-600"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800 mb-2">Доступность и устойчивость</h2>
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Бесперебойная работа 24/7 с доступностью ≥ 99,5%</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-copy text-green-500 mr-2"></i>
+                                <span>Резервирование компонентов (дублирование серверов)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-database text-green-500 mr-2"></i>
+                                <span>Репликация баз данных для отказоустойчивости</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-save text-green-500 mr-2"></i>
+                                <span>Регулярное резервное копирование данных</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Two Cards Row -->
+        <div class="grid grid-cols-2 gap-6">
+            <!-- Security Card -->
+            <div class="req-card security p-4">
+                <div class="flex items-start">
+                    <div class="req-icon bg-red-100">
+                        <i class="fas fa-shield-alt text-2xl text-red-600"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800 mb-2">Безопасность</h2>
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex items-center">
+                                <i class="fas fa-user-lock text-red-500 mr-2"></i>
+                                <span>Аутентификация с защитой паролей (хеширование, MFA)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-lock text-red-500 mr-2"></i>
+                                <span>Шифрование конфиденциальных данных (SSL/TLS)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-file-contract text-red-500 mr-2"></i>
+                                <span>Соответствие требованиям GDPR для персональных данных</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-bug-slash text-red-500 mr-2"></i>
+                                <span>Защита от основных угроз (SQL-инъекции, XSS, CSRF)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-shield-virus text-red-500 mr-2"></i>
+                                <span>Защита от DDoS-атак</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Integration Card -->
+            <div class="req-card integration p-4">
+                <div class="flex items-start">
+                    <div class="req-icon bg-purple-100">
+                        <i class="fas fa-plug text-2xl text-purple-600"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800 mb-2">Сопряжение систем</h2>
+                        <div class="grid grid-cols-2 gap-x-3 gap-y-2 mb-3">
+                            <div class="flex items-center bg-purple-50 p-2 rounded">
+                                <i class="fas fa-credit-card text-purple-500 mr-2"></i>
+                                <span class="text-sm">Платежные шлюзы</span>
+                            </div>
+                            <div class="flex items-center bg-purple-50 p-2 rounded">
+                                <i class="fas fa-truck text-purple-500 mr-2"></i>
+                                <span class="text-sm">Службы доставки</span>
+                            </div>
+                            <div class="flex items-center bg-purple-50 p-2 rounded">
+                                <i class="fas fa-envelope text-purple-500 mr-2"></i>
+                                <span class="text-sm">Email/SMS-сервисы</span>
+                            </div>
+                            <div class="flex items-center bg-purple-50 p-2 rounded">
+                                <i class="fas fa-calculator text-purple-500 mr-2"></i>
+                                <span class="text-sm">Интеграции с 1С</span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded">
+                            <p class="text-sm font-medium text-gray-700 mb-1">Открытый API для разработчиков</p>
+                            <p class="text-xs text-gray-600">Возможность создания сторонних сервисов, интегрирующихся с платформой</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        mermaid.initialize({ startOnLoad: true, theme: 'neutral', securityLevel: 'loose' });
+    });
+</script>
+</body>
+</html>
+
+<!-- 10.html -->
+<html lang="ru"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заключение</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .highlight-card {
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+        .highlight-card:hover {
+            transform: translateY(-5px);
+        }
+        .thank-you-text {
+            font-size: 3rem;
+            background: linear-gradient(to right, #4F46E5, #9333EA, #EC4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            transition: background-color 0.2s;
+            border-radius: 8px;
+        }
+        .contact-item:hover {
+            background-color: #f3f4f6;
+        }
+        .footer {
+            margin-top: auto;
+            padding: 16px 0;
+            background-color: #f9fafb;
+            border-top: 1px solid #e5e7eb;
+        }
+    </style>
+    <style>
+        .genspark-badge-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .genspark-modal {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 10000;
+            justify-content: end;
+        }
+
+        .genspark-modal-content {
+            background-color: white;
+            border-radius: 8px;
+            max-width: 450px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+        }
+        @media (max-width: 768px) {
+            .genspark-modal-content {
+                max-width: 90%;
+            }
+        }
+
+        .genspark-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .genspark-title {
+            margin-bottom: 8px;
+            font-weight: normal;
+            display: inline;
+            font-size: 14px;
+        }
+
+        .genspark-report {
+            color: #909499;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-bottom: 14px;
+            display: inline;
+        }
+
+        .genspark-info {
+            margin: 25px 0;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .genspark-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .genspark-remove-btn {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            color: #333;
+            padding: 4px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            flex: 1;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .genspark-go-btn {
+            background-color: #222;
+            border: none;
+            color: white;
+            padding: 4px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            flex: 1;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+    </style><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script></head>
+<body>
+<div class="slide">
+    <!-- Header -->
+    <div class="gradient-bg py-12 px-16">
+        <h1 class="text-4xl font-bold mb-3">Универсальный маркетплейс</h1>
+        <p class="text-xl opacity-90">Проект по созданию платформы для онлайн-торговли</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="p-12">
+        <!-- Key Info Summary -->
+        <div class="grid grid-cols-3 gap-6 mb-12">
+            <div class="highlight-card bg-blue-50 p-6">
+                <div class="flex items-center mb-3">
+                    <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-full">
+                        <i class="fas fa-calendar-alt text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold ml-3 text-gray-800">Сроки</h3>
+                </div>
+                <p class="text-gray-700">8 месяцев</p>
+                <p class="text-gray-600 text-sm">Январь - Август 2025</p>
+            </div>
+
+            <div class="highlight-card bg-purple-50 p-6">
+                <div class="flex items-center mb-3">
+                    <div class="w-12 h-12 flex items-center justify-center bg-purple-100 rounded-full">
+                        <i class="fas fa-coins text-2xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold ml-3 text-gray-800">Бюджет</h3>
+                </div>
+                <p class="text-gray-700">~7,2 млн руб.</p>
+                <p class="text-gray-600 text-sm">Включая резерв на риски</p>
+            </div>
+
+            <div class="highlight-card bg-green-50 p-6">
+                <div class="flex items-center mb-3">
+                    <div class="w-12 h-12 flex items-center justify-center bg-green-100 rounded-full">
+                        <i class="fas fa-check-circle text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold ml-3 text-gray-800">Результат</h3>
+                </div>
+                <p class="text-gray-700">Полнофункциональная платформа</p>
+                <p class="text-gray-600 text-sm">Веб-сайт + мобильное приложение</p>
+            </div>
+        </div>
+
+        <!-- Project Benefits -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Ключевые преимущества проекта:</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="flex items-start">
+                    <div class="w-10 h-10 flex items-center justify-center bg-indigo-100 rounded-full mr-3">
+                        <i class="fas fa-shopping-bag text-indigo-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Единая торговая площадка</h3>
+                        <p class="text-gray-600">Для продавцов любых категорий товаров</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="w-10 h-10 flex items-center justify-center bg-red-100 rounded-full mr-3">
+                        <i class="fas fa-chart-line text-red-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Новый канал сбыта</h3>
+                        <p class="text-gray-600">Доступ к широкой аудитории для малого бизнеса</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="w-10 h-10 flex items-center justify-center bg-yellow-100 rounded-full mr-3">
+                        <i class="fas fa-mobile-alt text-yellow-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Удобное мобильное приложение</h3>
+                        <p class="text-gray-600">Покупки с любого устройства в любое время</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="w-10 h-10 flex items-center justify-center bg-green-100 rounded-full mr-3">
+                        <i class="fas fa-shield-alt text-green-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Безопасность транзакций</h3>
+                        <p class="text-gray-600">Защищенные платежи и гарантии для покупателей</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="grid grid-cols-2 gap-8">
+
+
+            <div class="flex flex-col items-center justify-center">
+                <div class="thank-you-text mb-6 text-center">Спасибо за внимание!</div>
+                <div class="text-gray-600 text-center">
+                    <p class="mb-4">Готовы ответить на ваши вопросы.</p>
+                    <div class="flex justify-center space-x-4 text-2xl">
+                        <i class="fab fa-telegram text-blue-500"></i>
+                        <i class="far fa-envelope text-red-500"></i>
+                        <i class="fas fa-globe text-green-500"></i>
+                        <i class="fab fa-vk text-blue-600"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer text-center">
+        <p class="text-gray-500">© 2025 Универсальный маркетплейс | Все права защищены</p>
+    </div>
+</div>
+
+</body></html>
+
