@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Системные требования проекта</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #6366F1;
+            padding: 20px 40px;
+            color: white;
+        }
+        .req-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            transition: transform 0.2s;
+            border-top: 4px solid;
+        }
+        .req-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        .req-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .architecture {
+            border-color: #6366F1;
+        }
+        .performance {
+            border-color: #F59E0B;
+        }
+        .availability {
+            border-color: #10B981;
+        }
+        .security {
+            border-color: #EF4444;
+        }
+        .integration {
+            border-color: #8B5CF6;
+        }
+        .mermaid-container {
+            background-color: #F9FAFB;
+            border-radius: 8px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+    <div class="header">
+        <h1 class="text-3xl font-bold">Системные требования проекта</h1>
+    </div>
+
+    <div class="p-6">
+        <!-- Architecture Section -->
+        <div class="mb-6">
+            <div class="req-card architecture p-4">
+                <div class="flex items-start">
+                    <div class="req-icon bg-indigo-100">
+                        <i class="fas fa-sitemap text-2xl text-indigo-600"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800 mb-2">Архитектура и технологии</h2>
+
+                        <div class="mermaid-container mt-2 mb-3">
+                                <pre class="mermaid">
+                                    flowchart LR
+                                        A[Клиенты] --> B[Веб-сайт]
+                                        A --> C[Мобильные приложения]
+                                        B & C --> D[API Gateway]
+                                        D --> E[Микросервисы]
+                                        E --> F[(Реляционная БД)]
+                                        E --> G[(NoSQL БД)]
+                                        D --> H[Внешние API]
+
+                                        style A fill:#DBEAFE
+                                        style B fill:#E0F2FE
+                                        style C fill:#E0F2FE
+                                        style D fill:#FEF3C7
+                                        style E fill:#FEF3C7
+                                        style F fill:#D1FAE5
+                                        style G fill:#D1FAE5
+                                        style H fill:#FCE7F3
+                                </pre>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-3">
+                            <div class="bg-gray-50 p-2 rounded">
+                                <p class="text-sm font-medium text-gray-700">Клиентская часть:</p>
+                                <p class="text-xs text-gray-600">React.js, React Native</p>
+                            </div>
+                            <div class="bg-gray-50 p-2 rounded">
+                                <p class="text-sm font-medium text-gray-700">Серверная часть:</p>
+                                <p class="text-xs text-gray-600">Node.js, Java, Python</p>
+                            </div>
+                            <div class="bg-gray-50 p-2 rounded">
+                                <p class="text-sm font-medium text-gray-700">Базы данных:</p>
+                                <p class="text-xs text-gray-600">PostgreSQL, MongoDB</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Two Cards Row -->
+        <div class="grid grid-cols-2 gap-6 mb-6">
+            <!-- Performance Card -->
+            <div class="req-card performance p-4">
+                <div class="flex items-start">
+                    <div class="req-icon bg-yellow-100">
+                        <i class="fas fa-tachometer-alt text-2xl text-yellow-600"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800 mb-2">Производительность</h2>
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex items-center">
+                                <i class="fas fa-users text-yellow-500 mr-2"></i>
+                                <span>Поддержка 10000+ одновременных пользователей</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-clock text-yellow-500 mr-2"></i>
+                                <span>Время отклика операций ≤ 2-3 сек при средней нагрузке</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-arrows-alt-h text-yellow-500 mr-2"></i>
+                                <span>Масштабируемость через балансировку нагрузки</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-server text-yellow-500 mr-2"></i>
+                                <span>Горизонтальное масштабирование серверов</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Availability Card -->
+            <div class="req-card availability p-4">
+                <div class="flex items-start">
+                    <div class="req-icon bg-green-100">
+                        <i class="fas fa-heartbeat text-2xl text-green-600"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800 mb-2">Доступность и устойчивость</h2>
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Бесперебойная работа 24/7 с доступностью ≥ 99,5%</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-copy text-green-500 mr-2"></i>
+                                <span>Резервирование компонентов (дублирование серверов)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-database text-green-500 mr-2"></i>
+                                <span>Репликация баз данных для отказоустойчивости</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-save text-green-500 mr-2"></i>
+                                <span>Регулярное резервное копирование данных</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Two Cards Row -->
+        <div class="grid grid-cols-2 gap-6">
+            <!-- Security Card -->
+            <div class="req-card security p-4">
+                <div class="flex items-start">
+                    <div class="req-icon bg-red-100">
+                        <i class="fas fa-shield-alt text-2xl text-red-600"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800 mb-2">Безопасность</h2>
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex items-center">
+                                <i class="fas fa-user-lock text-red-500 mr-2"></i>
+                                <span>Аутентификация с защитой паролей (хеширование, MFA)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-lock text-red-500 mr-2"></i>
+                                <span>Шифрование конфиденциальных данных (SSL/TLS)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-file-contract text-red-500 mr-2"></i>
+                                <span>Соответствие требованиям GDPR для персональных данных</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-bug-slash text-red-500 mr-2"></i>
+                                <span>Защита от основных угроз (SQL-инъекции, XSS, CSRF)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-shield-virus text-red-500 mr-2"></i>
+                                <span>Защита от DDoS-атак</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Integration Card -->
+            <div class="req-card integration p-4">
+                <div class="flex items-start">
+                    <div class="req-icon bg-purple-100">
+                        <i class="fas fa-plug text-2xl text-purple-600"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800 mb-2">Сопряжение систем</h2>
+                        <div class="grid grid-cols-2 gap-x-3 gap-y-2 mb-3">
+                            <div class="flex items-center bg-purple-50 p-2 rounded">
+                                <i class="fas fa-credit-card text-purple-500 mr-2"></i>
+                                <span class="text-sm">Платежные шлюзы</span>
+                            </div>
+                            <div class="flex items-center bg-purple-50 p-2 rounded">
+                                <i class="fas fa-truck text-purple-500 mr-2"></i>
+                                <span class="text-sm">Службы доставки</span>
+                            </div>
+                            <div class="flex items-center bg-purple-50 p-2 rounded">
+                                <i class="fas fa-envelope text-purple-500 mr-2"></i>
+                                <span class="text-sm">Email/SMS-сервисы</span>
+                            </div>
+                            <div class="flex items-center bg-purple-50 p-2 rounded">
+                                <i class="fas fa-calculator text-purple-500 mr-2"></i>
+                                <span class="text-sm">Интеграции с 1С</span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded">
+                            <p class="text-sm font-medium text-gray-700 mb-1">Открытый API для разработчиков</p>
+                            <p class="text-xs text-gray-600">Возможность создания сторонних сервисов, интегрирующихся с платформой</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        mermaid.initialize({ startOnLoad: true, theme: 'neutral', securityLevel: 'loose' });
+    });
+</script>
+</body>
+</html>

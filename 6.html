@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Планирование рисков</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #DC2626;
+            padding: 20px 40px;
+            color: white;
+        }
+        .risk-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border-left: 4px solid;
+        }
+        .risk-severity-high {
+            border-color: #DC2626;
+            background-color: #FEE2E2;
+        }
+        .risk-severity-medium {
+            border-color: #F59E0B;
+            background-color: #FEF3C7;
+        }
+        .risk-severity-low {
+            border-color: #10B981;
+            background-color: #D1FAE5;
+        }
+        .response-card {
+            border-radius: 8px;
+            height: 100%;
+            transition: transform 0.2s;
+            border: 1px solid #e5e7eb;
+        }
+        .response-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .matrix-cell {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+        .matrix-label {
+            font-weight: 500;
+            font-size: 14px;
+            text-align: center;
+            color: #4B5563;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+    <div class="header">
+        <h1 class="text-3xl font-bold">Планирование рисков проекта</h1>
+    </div>
+
+    <div class="p-6">
+        <div class="flex mb-8">
+            <!-- Left Column - Risks List -->
+            <div class="w-2/3 pr-4">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                    <i class="fas fa-exclamation-triangle text-red-600 mr-2"></i> Возможные риски проекта
+                </h2>
+
+                <div class="risk-item risk-severity-high">
+                    <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-red-100 rounded-full mr-3">
+                        <i class="fas fa-calendar-times text-red-600"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">Срыв сроков разработки</p>
+                        <p class="text-sm text-gray-600">Задержки в реализации функционала, недооценка сложности задач</p>
+                    </div>
+                </div>
+
+                <div class="risk-item risk-severity-high">
+                    <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-red-100 rounded-full mr-3">
+                        <i class="fas fa-dollar-sign text-red-600"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">Превышение бюджета</p>
+                        <p class="text-sm text-gray-600">Фактические затраты больше запланированных, дополнительные расходы</p>
+                    </div>
+                </div>
+
+                <div class="risk-item risk-severity-medium">
+                    <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-yellow-100 rounded-full mr-3">
+                        <i class="fas fa-user-minus text-yellow-600"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">Уход ключевых сотрудников</p>
+                        <p class="text-sm text-gray-600">Потеря важных членов команды, снижение скорости работы</p>
+                    </div>
+                </div>
+
+                <div class="risk-item risk-severity-medium">
+                    <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-yellow-100 rounded-full mr-3">
+                        <i class="fas fa-bug text-yellow-600"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">Технические риски</p>
+                        <p class="text-sm text-gray-600">Сбои в работе внешних сервисов, проблемы с производительностью</p>
+                    </div>
+                </div>
+
+                <div class="risk-item risk-severity-low">
+                    <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-green-100 rounded-full mr-3">
+                        <i class="fas fa-thumbs-down text-green-600"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">Риски качества</p>
+                        <p class="text-sm text-gray-600">Продукт не удовлетворяет ожидания пользователей</p>
+                    </div>
+                </div>
+
+                <div class="risk-item risk-severity-low">
+                    <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-green-100 rounded-full mr-3">
+                        <i class="fas fa-chart-line text-green-600 transform rotate-180"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">Низкий спрос на платформу</p>
+                        <p class="text-sm text-gray-600">Медленный рост пользователей, недостаточный интерес продавцов</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Risk Matrix -->
+            <div class="w-1/3 pl-4">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                    <i class="fas fa-chart-area text-red-600 mr-2"></i> Матрица рисков
+                </h2>
+
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <!-- Risk Matrix Header -->
+                    <div class="flex mb-2">
+                        <div class="w-1/4"></div>
+                        <div class="w-3/4 flex">
+                            <div class="matrix-label w-1/3">Низкое влияние</div>
+                            <div class="matrix-label w-1/3">Среднее влияние</div>
+                            <div class="matrix-label w-1/3">Высокое влияние</div>
+                        </div>
+                    </div>
+
+                    <!-- Risk Matrix Row 1 -->
+                    <div class="flex mb-2">
+                        <div class="w-1/4 flex items-center justify-end pr-2">
+                            <span class="matrix-label">Высокая вероятность</span>
+                        </div>
+                        <div class="w-3/4 flex">
+                            <div class="matrix-cell bg-yellow-500 m-1">
+                                <span>5</span>
+                            </div>
+                            <div class="matrix-cell bg-red-500 m-1">
+                                <span>6</span>
+                            </div>
+                            <div class="matrix-cell bg-red-700 m-1">
+                                <span>1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Risk Matrix Row 2 -->
+                    <div class="flex mb-2">
+                        <div class="w-1/4 flex items-center justify-end pr-2">
+                            <span class="matrix-label">Средняя вероятность</span>
+                        </div>
+                        <div class="w-3/4 flex">
+                            <div class="matrix-cell bg-green-500 m-1">
+                                <span></span>
+                            </div>
+                            <div class="matrix-cell bg-yellow-500 m-1">
+                                <span>3,4</span>
+                            </div>
+                            <div class="matrix-cell bg-red-500 m-1">
+                                <span>2</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Risk Matrix Row 3 -->
+                    <div class="flex">
+                        <div class="w-1/4 flex items-center justify-end pr-2">
+                            <span class="matrix-label">Низкая вероятность</span>
+                        </div>
+                        <div class="w-3/4 flex">
+                            <div class="matrix-cell bg-green-500 m-1">
+                                <span></span>
+                            </div>
+                            <div class="matrix-cell bg-green-500 m-1">
+                                <span></span>
+                            </div>
+                            <div class="matrix-cell bg-yellow-500 m-1">
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Legend -->
+                    <div class="mt-4 flex justify-between">
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-green-500 mr-1"></div>
+                            <span class="text-xs">Низкий</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-yellow-500 mr-1"></div>
+                            <span class="text-xs">Средний</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-red-500 mr-1"></div>
+                            <span class="text-xs">Высокий</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-red-700 mr-1"></div>
+                            <span class="text-xs">Критический</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Methods of Risk Response -->
+        <div>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                <i class="fas fa-shield-alt text-red-600 mr-2"></i> Методы реагирования на риски
+            </h2>
+
+            <div class="grid grid-cols-4 gap-4">
+                <div class="response-card bg-blue-50 p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full">
+                            <i class="fas fa-ban text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold text-blue-700 ml-2">Избежание риска</h3>
+                    </div>
+                    <ul class="text-sm text-gray-600 list-disc pl-5">
+                        <li>Корректировка плана проекта</li>
+                        <li>Изменение объема работ</li>
+                        <li>Упрощение функциональности MVP</li>
+                    </ul>
+                </div>
+
+                <div class="response-card bg-yellow-50 p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 flex items-center justify-center bg-yellow-100 rounded-full">
+                            <i class="fas fa-compress-arrows-alt text-yellow-600"></i>
+                        </div>
+                        <h3 class="font-bold text-yellow-700 ml-2">Снижение риска</h3>
+                    </div>
+                    <ul class="text-sm text-gray-600 list-disc pl-5">
+                        <li>Привлечение экспертов</li>
+                        <li>Дополнительное тестирование</li>
+                        <li>Создание временных резервов</li>
+                    </ul>
+                </div>
+
+                <div class="response-card bg-purple-50 p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 flex items-center justify-center bg-purple-100 rounded-full">
+                            <i class="fas fa-exchange-alt text-purple-600"></i>
+                        </div>
+                        <h3 class="font-bold text-purple-700 ml-2">Передача риска</h3>
+                    </div>
+                    <ul class="text-sm text-gray-600 list-disc pl-5">
+                        <li>Страхование</li>
+                        <li>Договоры с подрядчиками</li>
+                        <li>Аутсорсинг сложных модулей</li>
+                    </ul>
+                </div>
+
+                <div class="response-card bg-green-50 p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 flex items-center justify-center bg-green-100 rounded-full">
+                            <i class="fas fa-check text-green-600"></i>
+                        </div>
+                        <h3 class="font-bold text-green-700 ml-2">Принятие риска</h3>
+                    </div>
+                    <ul class="text-sm text-gray-600 list-disc pl-5">
+                        <li>Резерв бюджета на риски</li>
+                        <li>Мониторинг ситуации</li>
+                        <li>Подготовка плана реагирования</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

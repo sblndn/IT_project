@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Канбан-доска проекта</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2563EB;
+            padding: 20px 40px;
+            color: white;
+        }
+        .kanban-board {
+            display: flex;
+            min-height: 500px;
+            gap: 16px;
+            padding: 16px;
+        }
+        .kanban-column {
+            background-color: #F3F4F6;
+            border-radius: 8px;
+            width: 100%;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .column-header {
+            padding: 12px;
+            font-weight: 600;
+            border-bottom: 1px solid #E5E7EB;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .column-content {
+            padding: 12px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        .task-card {
+            background-color: white;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .task-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .priority-high {
+            border-left-color: #EF4444;
+        }
+        .priority-medium {
+            border-left-color: #F59E0B;
+        }
+        .priority-low {
+            border-left-color: #10B981;
+        }
+        .task-title {
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+        .task-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #6B7280;
+        }
+        .column-count {
+            background-color: #E5E7EB;
+            color: #4B5563;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+    <div class="header">
+        <h1 class="text-3xl font-bold">Канбан-доска проекта</h1>
+    </div>
+
+    <div class="p-4">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-semibold text-gray-800">
+                <i class="fas fa-tasks text-blue-600 mr-2"></i> Визуальный подход к управлению задачами
+            </h2>
+
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center">
+                    <span class="w-3 h-3 inline-block bg-red-500 mr-1 rounded-sm"></span>
+                    <span class="text-sm text-gray-700">Высокий приоритет</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="w-3 h-3 inline-block bg-yellow-500 mr-1 rounded-sm"></span>
+                    <span class="text-sm text-gray-700">Средний приоритет</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="w-3 h-3 inline-block bg-green-500 mr-1 rounded-sm"></span>
+                    <span class="text-sm text-gray-700">Низкий приоритет</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="kanban-board">
+            <!-- Column 1: Идеи -->
+            <div class="kanban-column">
+                <div class="column-header bg-gray-100">
+                    <div class="flex items-center">
+                        <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                        <span>Идеи</span>
+                    </div>
+                    <span class="column-count">3</span>
+                </div>
+                <div class="column-content">
+                    <div class="task-card priority-low">
+                        <div class="task-title">Интеграция с маркетплейсами</div>
+                        <p class="text-xs text-gray-600 mb-2">Экспорт товаров на популярные площадки</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="far fa-clock mr-1"></i> Не оценено</span>
+                            <span>—</span>
+                        </div>
+                    </div>
+                    <div class="task-card priority-medium">
+                        <div class="task-title">Система лояльности</div>
+                        <p class="text-xs text-gray-600 mb-2">Бонусы, купоны, кешбэк для покупателей</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="far fa-clock mr-1"></i> Не оценено</span>
+                            <span>—</span>
+                        </div>
+                    </div>
+                    <div class="task-card priority-low">
+                        <div class="task-title">Мобильное приложение v2</div>
+                        <p class="text-xs text-gray-600 mb-2">Расширение функционала для второй версии</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="far fa-clock mr-1"></i> Не оценено</span>
+                            <span>—</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 2: Запланировано -->
+            <div class="kanban-column">
+                <div class="column-header bg-blue-50">
+                    <div class="flex items-center">
+                        <i class="fas fa-list-ul text-blue-500 mr-2"></i>
+                        <span>Запланировано</span>
+                    </div>
+                    <span class="column-count">4</span>
+                </div>
+                <div class="column-content">
+                    <div class="task-card priority-high">
+                        <div class="task-title">Аутентификация пользователей</div>
+                        <p class="text-xs text-gray-600 mb-2">Регистрация, авторизация, восстановление пароля</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="far fa-clock mr-1"></i> 10 дней</span>
+                            <span class="bg-blue-100 text-blue-800 py-1 px-2 rounded text-xs">Бэкенд</span>
+                        </div>
+                    </div>
+                    <div class="task-card priority-medium">
+                        <div class="task-title">Дизайн главной страницы</div>
+                        <p class="text-xs text-gray-600 mb-2">Прототип и макет в Figma</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="far fa-clock mr-1"></i> 5 дней</span>
+                            <span class="bg-purple-100 text-purple-800 py-1 px-2 rounded text-xs">Дизайн</span>
+                        </div>
+                    </div>
+                    <div class="task-card priority-medium">
+                        <div class="task-title">Архитектура БД</div>
+                        <p class="text-xs text-gray-600 mb-2">Структура таблиц и связи</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="far fa-clock mr-1"></i> 7 дней</span>
+                            <span class="bg-blue-100 text-blue-800 py-1 px-2 rounded text-xs">Бэкенд</span>
+                        </div>
+                    </div>
+                    <div class="task-card priority-low">
+                        <div class="task-title">Настройка CI/CD</div>
+                        <p class="text-xs text-gray-600 mb-2">Автоматизация сборки и деплоя</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="far fa-clock mr-1"></i> 3 дня</span>
+                            <span class="bg-gray-100 text-gray-800 py-1 px-2 rounded text-xs">DevOps</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 3: В работе -->
+            <div class="kanban-column">
+                <div class="column-header bg-indigo-50">
+                    <div class="flex items-center">
+                        <i class="fas fa-spinner text-indigo-500 mr-2"></i>
+                        <span>В работе</span>
+                    </div>
+                    <span class="column-count">3</span>
+                </div>
+                <div class="column-content">
+                    <div class="task-card priority-high">
+                        <div class="task-title">API каталога товаров</div>
+                        <p class="text-xs text-gray-600 mb-2">Эндпоинты для работы с товарами</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="fas fa-user-circle mr-1"></i> Алексей</span>
+                            <span class="bg-blue-100 text-blue-800 py-1 px-2 rounded text-xs">Бэкенд</span>
+                        </div>
+                    </div>
+                    <div class="task-card priority-high">
+                        <div class="task-title">Корзина покупок</div>
+                        <p class="text-xs text-gray-600 mb-2">Компонент для добавления/удаления товаров</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="fas fa-user-circle mr-1"></i> Мария</span>
+                            <span class="bg-yellow-100 text-yellow-800 py-1 px-2 rounded text-xs">Фронтенд</span>
+                        </div>
+                    </div>
+                    <div class="task-card priority-medium">
+                        <div class="task-title">Прототип мобильного приложения</div>
+                        <p class="text-xs text-gray-600 mb-2">Основные экраны и навигация</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="fas fa-user-circle mr-1"></i> Антон</span>
+                            <span class="bg-purple-100 text-purple-800 py-1 px-2 rounded text-xs">Дизайн</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 4: Тестирование -->
+            <div class="kanban-column">
+                <div class="column-header bg-yellow-50">
+                    <div class="flex items-center">
+                        <i class="fas fa-vial text-yellow-500 mr-2"></i>
+                        <span>Тестирование</span>
+                    </div>
+                    <span class="column-count">2</span>
+                </div>
+                <div class="column-content">
+                    <div class="task-card priority-high">
+                        <div class="task-title">Модуль регистрации продавцов</div>
+                        <p class="text-xs text-gray-600 mb-2">Форма и валидация данных</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="fas fa-user-circle mr-1"></i> Иван</span>
+                            <span class="bg-yellow-100 text-yellow-800 py-1 px-2 rounded text-xs">Фронтенд</span>
+                        </div>
+                    </div>
+                    <div class="task-card priority-medium">
+                        <div class="task-title">Система поиска товаров</div>
+                        <p class="text-xs text-gray-600 mb-2">Поиск с фильтрами и сортировкой</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="fas fa-user-circle mr-1"></i> Алексей</span>
+                            <span class="bg-blue-100 text-blue-800 py-1 px-2 rounded text-xs">Бэкенд</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 5: Выполнено -->
+            <div class="kanban-column">
+                <div class="column-header bg-green-50">
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                        <span>Выполнено</span>
+                    </div>
+                    <span class="column-count">3</span>
+                </div>
+                <div class="column-content">
+                    <div class="task-card priority-high opacity-60">
+                        <div class="task-title">Стартовая структура проекта</div>
+                        <p class="text-xs text-gray-600 mb-2">Настройка репозитория и окружения</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="fas fa-calendar-check mr-1"></i> 10.01.25</span>
+                            <span class="bg-gray-100 text-gray-800 py-1 px-2 rounded text-xs">DevOps</span>
+                        </div>
+                    </div>
+                    <div class="task-card priority-medium opacity-60">
+                        <div class="task-title">Логотип и брендинг</div>
+                        <p class="text-xs text-gray-600 mb-2">Создание визуальной айдентики</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="fas fa-calendar-check mr-1"></i> 15.01.25</span>
+                            <span class="bg-purple-100 text-purple-800 py-1 px-2 rounded text-xs">Дизайн</span>
+                        </div>
+                    </div>
+                    <div class="task-card priority-low opacity-60">
+                        <div class="task-title">ТЗ проекта</div>
+                        <p class="text-xs text-gray-600 mb-2">Документация требований</p>
+                        <div class="task-meta">
+                            <span class="flex items-center"><i class="fas fa-calendar-check mr-1"></i> 05.01.25</span>
+                            <span class="bg-pink-100 text-pink-800 py-1 px-2 rounded text-xs">Аналитика</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4 bg-blue-50 p-4 rounded-lg border border-blue-200">
+            <h3 class="font-semibold text-blue-800 mb-2">Преимущества Канбан-подхода:</h3>
+            <div class="grid grid-cols-3 gap-4">
+                <div class="flex items-start">
+                    <i class="fas fa-eye text-blue-500 mt-1 mr-2"></i>
+                    <p class="text-sm text-gray-700">Наглядность рабочего процесса и текущего состояния проекта</p>
+                </div>
+                <div class="flex items-start">
+                    <i class="fas fa-route text-blue-500 mt-1 mr-2"></i>
+                    <p class="text-sm text-gray-700">Быстрое обнаружение узких мест в процессе разработки</p>
+                </div>
+                <div class="flex items-start">
+                    <i class="fas fa-sync-alt text-blue-500 mt-1 mr-2"></i>
+                    <p class="text-sm text-gray-700">Постоянное обновление и актуальность информации о задачах</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

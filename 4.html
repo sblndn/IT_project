@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Календарный план проекта</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #0891B2;
+            padding: 20px 40px;
+            color: white;
+        }
+        .gantt-bar {
+            height: 30px;
+            border-radius: 4px;
+            position: relative;
+        }
+        .gantt-bar::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -8px;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+        .planning {
+            background-color: #DBEAFE;
+            border: 2px solid #2563EB;
+        }
+        .planning::before {
+            border-left: 8px solid #2563EB;
+        }
+        .design {
+            background-color: #E0F2FE;
+            border: 2px solid #0EA5E9;
+        }
+        .design::before {
+            border-left: 8px solid #0EA5E9;
+        }
+        .development {
+            background-color: #FEF9C3;
+            border: 2px solid #CA8A04;
+        }
+        .development::before {
+            border-left: 8px solid #CA8A04;
+        }
+        .testing {
+            background-color: #FCE7F3;
+            border: 2px solid #DB2777;
+        }
+        .testing::before {
+            border-left: 8px solid #DB2777;
+        }
+        .deployment {
+            background-color: #DCFCE7;
+            border: 2px solid #16A34A;
+        }
+        .deployment::before {
+            border-left: 8px solid #16A34A;
+        }
+        .month-label {
+            width: calc(100% / 8);
+            text-align: center;
+            font-weight: 500;
+            color: #4B5563;
+        }
+        .gantt-container {
+            width: 100%;
+            padding: 0 20px;
+            position: relative;
+        }
+        .milestone {
+            position: absolute;
+            top: -22px;
+            width: 20px;
+            height: 20px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+    <div class="header">
+        <h1 class="text-3xl font-bold">Календарный план проекта</h1>
+    </div>
+
+    <div class="p-8">
+        <div class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                <i class="fas fa-calendar-alt text-cyan-600 mr-2"></i> Этапы и сроки выполнения
+            </h2>
+
+            <table class="w-full border-collapse">
+                <thead>
+                <tr class="bg-gray-100">
+                    <th class="border border-gray-300 p-3 text-left">Этап проекта</th>
+                    <th class="border border-gray-300 p-3 text-left">Сроки выполнения</th>
+                    <th class="border border-gray-300 p-3 text-left">Длительность</th>
+                    <th class="border border-gray-300 p-3 text-left">Ключевой результат (веха)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="border border-gray-300 p-3 font-medium">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded-full bg-blue-600 mr-2"></div>
+                            Планирование
+                        </div>
+                    </td>
+                    <td class="border border-gray-300 p-3">Январь 2025</td>
+                    <td class="border border-gray-300 p-3">1 месяц</td>
+                    <td class="border border-gray-300 p-3">Требования собраны и утверждены</td>
+                </tr>
+                <tr class="bg-gray-50">
+                    <td class="border border-gray-300 p-3 font-medium">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded-full bg-sky-500 mr-2"></div>
+                            Дизайн
+                        </div>
+                    </td>
+                    <td class="border border-gray-300 p-3">Февраль 2025</td>
+                    <td class="border border-gray-300 p-3">1 месяц</td>
+                    <td class="border border-gray-300 p-3">Готов комплект UX/UI прототипов</td>
+                </tr>
+                <tr>
+                    <td class="border border-gray-300 p-3 font-medium">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded-full bg-yellow-600 mr-2"></div>
+                            Разработка
+                        </div>
+                    </td>
+                    <td class="border border-gray-300 p-3">Март – Июнь 2025</td>
+                    <td class="border border-gray-300 p-3">4 месяца</td>
+                    <td class="border border-gray-300 p-3">Выпущена бета-версия платформы</td>
+                </tr>
+                <tr class="bg-gray-50">
+                    <td class="border border-gray-300 p-3 font-medium">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded-full bg-pink-600 mr-2"></div>
+                            Тестирование
+                        </div>
+                    </td>
+                    <td class="border border-gray-300 p-3">Июль 2025</td>
+                    <td class="border border-gray-300 p-3">1 месяц</td>
+                    <td class="border border-gray-300 p-3">Проведено приёмочное тестирование, устранены баги</td>
+                </tr>
+                <tr>
+                    <td class="border border-gray-300 p-3 font-medium">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded-full bg-green-600 mr-2"></div>
+                            Внедрение
+                        </div>
+                    </td>
+                    <td class="border border-gray-300 p-3">Август 2025</td>
+                    <td class="border border-gray-300 p-3">1 месяц</td>
+                    <td class="border border-gray-300 p-3">Запуск MVP (релиз продукта)</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6">
+                <i class="fas fa-tasks text-cyan-600 mr-2"></i> Диаграмма Ганта
+            </h2>
+
+            <div class="gantt-chart">
+                <!-- Month Labels -->
+                <div class="flex mb-2">
+                    <div class="w-1/4"></div> <!-- Space for labels -->
+                    <div class="w-3/4 flex">
+                        <div class="month-label">Янв</div>
+                        <div class="month-label">Фев</div>
+                        <div class="month-label">Мар</div>
+                        <div class="month-label">Апр</div>
+                        <div class="month-label">Май</div>
+                        <div class="month-label">Июн</div>
+                        <div class="month-label">Июл</div>
+                        <div class="month-label">Авг</div>
+                    </div>
+                </div>
+
+                <!-- Grid Lines -->
+                <div class="w-full flex mb-4">
+                    <div class="w-1/4"></div>
+                    <div class="w-3/4 flex">
+                        <div class="border-l border-gray-300 h-40 w-full"></div>
+                        <div class="border-l border-gray-300 h-40 w-full"></div>
+                        <div class="border-l border-gray-300 h-40 w-full"></div>
+                        <div class="border-l border-gray-300 h-40 w-full"></div>
+                        <div class="border-l border-gray-300 h-40 w-full"></div>
+                        <div class="border-l border-gray-300 h-40 w-full"></div>
+                        <div class="border-l border-gray-300 h-40 w-full"></div>
+                        <div class="border-l border-gray-300 h-40 w-full"></div>
+                    </div>
+                </div>
+
+                <!-- Gantt Bars -->
+                <div class="flex items-center mb-5">
+                    <div class="w-1/4 pr-4">
+                        <p class="font-medium text-right">Планирование</p>
+                    </div>
+                    <div class="w-3/4 gantt-container">
+                        <div class="milestone" style="left: calc(100% / 8 * 0.5);">
+                            <i class="fas fa-star text-xs text-yellow-500"></i>
+                        </div>
+                        <div class="gantt-bar planning" style="width: calc(100% / 8);"></div>
+                    </div>
+                </div>
+
+                <div class="flex items-center mb-5">
+                    <div class="w-1/4 pr-4">
+                        <p class="font-medium text-right">Дизайн</p>
+                    </div>
+                    <div class="w-3/4 gantt-container">
+                        <div class="milestone" style="left: calc(100% / 8 * 1.5);">
+                            <i class="fas fa-star text-xs text-yellow-500"></i>
+                        </div>
+                        <div class="gantt-bar design" style="width: calc(100% / 8); margin-left: calc(100% / 8);"></div>
+                    </div>
+                </div>
+
+                <div class="flex items-center mb-5">
+                    <div class="w-1/4 pr-4">
+                        <p class="font-medium text-right">Разработка</p>
+                    </div>
+                    <div class="w-3/4 gantt-container">
+                        <div class="milestone" style="left: calc(100% / 8 * 5.5);">
+                            <i class="fas fa-star text-xs text-yellow-500"></i>
+                        </div>
+                        <div class="gantt-bar development" style="width: calc(100% / 8 * 4); margin-left: calc(100% / 8 * 2);"></div>
+                    </div>
+                </div>
+
+                <div class="flex items-center mb-5">
+                    <div class="w-1/4 pr-4">
+                        <p class="font-medium text-right">Тестирование</p>
+                    </div>
+                    <div class="w-3/4 gantt-container">
+                        <div class="milestone" style="left: calc(100% / 8 * 6.5);">
+                            <i class="fas fa-star text-xs text-yellow-500"></i>
+                        </div>
+                        <div class="gantt-bar testing" style="width: calc(100% / 8); margin-left: calc(100% / 8 * 6);"></div>
+                    </div>
+                </div>
+
+                <div class="flex items-center">
+                    <div class="w-1/4 pr-4">
+                        <p class="font-medium text-right">Внедрение</p>
+                    </div>
+                    <div class="w-3/4 gantt-container">
+                        <div class="milestone" style="left: calc(100% / 8 * 7.5);">
+                            <i class="fas fa-flag text-xs text-green-600"></i>
+                        </div>
+                        <div class="gantt-bar deployment" style="width: calc(100% / 8); margin-left: calc(100% / 8 * 7);"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 flex justify-center">
+                <div class="bg-gray-100 p-4 rounded-lg shadow-sm">
+                    <p class="text-center text-gray-700 font-medium">
+                        <i class="fas fa-info-circle text-blue-500 mr-2"></i>
+                        Общая длительность проекта: 8 месяцев (Январь – Август 2025)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

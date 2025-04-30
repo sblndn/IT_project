@@ -1,0 +1,228 @@
+<html lang="ru"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание универсального маркетплейса</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 0;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(59,130,246,0.1) 100%);
+            z-index: 1;
+        }
+        .content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 100px;
+        }
+        .icon-grid {
+            display: flex;
+            margin-top: 40px;
+        }
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 60px;
+        }
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+    </style>
+    <style>
+        .genspark-badge-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .genspark-modal {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 10000;
+            justify-content: end;
+        }
+
+        .genspark-modal-content {
+            background-color: white;
+            border-radius: 8px;
+            max-width: 450px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+        }
+        @media (max-width: 768px) {
+            .genspark-modal-content {
+                max-width: 90%;
+            }
+        }
+
+        .genspark-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .genspark-title {
+            margin-bottom: 8px;
+            font-weight: normal;
+            display: inline;
+            font-size: 14px;
+        }
+
+        .genspark-report {
+            color: #909499;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-bottom: 14px;
+            display: inline;
+        }
+
+        .genspark-info {
+            margin: 25px 0;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .genspark-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .genspark-remove-btn {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            color: #333;
+            padding: 4px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            flex: 1;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .genspark-go-btn {
+            background-color: #222;
+            border: none;
+            color: white;
+            padding: 4px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            flex: 1;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+    </style><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script></head>
+<body>
+<div class="slide">
+    <div class="gradient-overlay"></div>
+
+    <div class="content">
+        <div class="mb-4">
+            <h1 class="text-5xl font-bold text-blue-600">Создание универсального маркетплейса</h1>
+            <h2 class="text-3xl font-normal text-gray-600 mt-2">(веб-сайт и мобильное приложение)</h2>
+        </div>
+
+        <div class="mt-8 mb-12 max-w-2xl">
+            <p class="text-xl text-gray-700">
+                Проект по разработке онлайн-платформы для продажи
+                широкого ассортимента товаров от разных продавцов.
+            </p>
+        </div>
+
+        <div class="icon-grid">
+            <div class="icon-item">
+                <div class="icon-circle bg-blue-100">
+                    <i class="fas fa-shopping-cart text-4xl text-blue-600"></i>
+                </div>
+                <span class="text-lg font-medium text-gray-800">Онлайн-торговля</span>
+            </div>
+
+            <div class="icon-item">
+                <div class="icon-circle bg-blue-100">
+                    <i class="fas fa-laptop text-4xl text-blue-600"></i>
+                </div>
+                <span class="text-lg font-medium text-gray-800">Веб-платформа</span>
+            </div>
+
+            <div class="icon-item">
+                <div class="icon-circle bg-blue-100">
+                    <i class="fas fa-mobile-alt text-4xl text-blue-600"></i>
+                </div>
+                <span class="text-lg font-medium text-gray-800">Мобильное приложение</span>
+            </div>
+
+            <div class="icon-item">
+                <div class="icon-circle bg-blue-100">
+                    <i class="fas fa-users text-4xl text-blue-600"></i>
+                </div>
+                <span class="text-lg font-medium text-gray-800">Для продавцов и покупателей</span>
+            </div>
+        </div>
+
+        <div class="absolute bottom-12 left-100">
+
+        </div>
+    </div>
+</div>
+
+<script src="https://www.genspark.ai/slide-inner.js?_v=1"></script>
+<script id="html_badge_script1">
+    window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+    "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDnJaJ2uLTK4PUuDsJRKWb6EuomXGrVuhVbt0zD4g0neBjsnhRVJpNb4hL8otkxiRGaWK43WbTwWNcdX3Or8FhHU8CNDNhMYShHap3JrqQ2t562VfwHAzTmXBeJe0fv%2FLUs7trG4y2e21pORQIADive6UZ7fVPejTloMGHa%2BO38js0fqRyQ%2BeH88kmkQ0iy5mzZm1Lj%2BcETm3kQiaEOdFDl204zeIHdFjus6XqJwwo2pk4U5cHNjjxrYYHuM3ygxC3tjIP4847ylZEaYogBMh7qZappzs1mj5iS9ibqOZOjHebYgzWSgqMV5A%2Bg9SgUpnuQ5todEVoS2WPr5kPDhK7fyfwC%2B9%2B6%2BSPQc0LMB%2BrwFA9MuKwSgIjv0XOir2AMlxKcQjf1O%2FtnIGn%2BL46ohrT%2BHZCiH4IfT8iIdOLfkNGj8WfALFjd%2BKIITU02QjJdbkJYChnrbRs8UBIEpIAlAIhGBk2VxbHphi8UcerZCPuTZZE5eCcoie%2Bg3tJaZeFcK2DqTXgY1JtY3M16gTn4j5A5BvUtCICf0WwapcRsSagaZatTh8cOaJjjB%2BFhwpHq%2FJiueZXLfQ%2FZycp279v7nRzDQKW9WoR0%2Fzyn%2BVJXv8odvpre0R8OY2eG9BO97ajcKLWGmjPGrSlJYDlgOVZ3dDfXoAJh9oiCUlD7Ec2B32pXOezEZ%2B2dFTb0p23tRaXL6UrnEYMm5u9%2FjxRwLK7h1rQ5iqBOvu9Fwzr19baIf8ZYou";
+    window.__genspark_locale = "en-US";
+    window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDnJaJ2uLTK4PUuDsJRKWb6EuomXGrVuhVbt0zD4g0neBjsnhRVJpNb4hL8otkxiRGaWK43WbTwWNcdX3Or8FhHU8CNDNhMYShHap3JrqQ2t562VfwHAzTmXBeJe0fv/LUs7trG4y2e21pORQIADive6UZ7fVPejTloMGHa+O38js0fqRyQ+eH88kmkQ0iy5mzZm1Lj+cETm3kQiaEOdFDl204zeIHdFjus6XqJwwo2pk4U5cHNjjxrYYHuM3ygxC3tjIP4847ylZEaYogBMh7qZappzs1mj5iS9ibqOZOjHebYgzWSgqMV5A+g9SgUpnuQ5todEVoS2WPr5kPDhK7fyfwC+9+6+SPQc0LMB+rwFA9MuKwSgIjv0XOir2AMlxKcQjf1O/tnIGn+L46ohrT+HZCiH4IfT8iIdOLfkNGj8WfALFjd+KIITU02QjJdbkJYChnrbRs8UBIEpIAlAIhGBk2VxbHphi8UcerZCPuTZZE5eCcoie+g3tJaZeFcK2DqTXgY1JtY3M16gTn4j5A5BvUtCICf0WwapcRsSagaZatTh8cOaJjjB+FhwpHq/JiueZXLfQ/Zycp279v7nRzDQKW9WoR0/zyn+VJXv8odvpre0R8OY2eG9BO97ajcKLWGmjPGrSlJYDlgOVZ3dDfXoAJh9oiCUlD7Ec2B32pXOezEZ+2dFTb0p23tRaXL6UrnEYMm5u9/jxRwLK7h1rQ5iqBOvu9Fwzr19baIf8ZYou";
+</script>
+
+<script id="html_badge_script2" src="https://www.genspark.ai/html_badge.js"></script>
+</body></html>

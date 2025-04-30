@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инициализация проекта</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #3B82F6;
+            padding: 20px 40px;
+            color: white;
+        }
+        .content-grid {
+            display: flex;
+            height: calc(100% - 80px);
+        }
+        .info-box {
+            background-color: #f8fafc;
+            border-left: 4px solid #3B82F6;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .smart-item {
+            display: flex;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        .smart-letter {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+    <div class="header">
+        <h1 class="text-3xl font-bold">Инициализация проекта</h1>
+    </div>
+
+    <div class="content-grid p-8">
+        <div class="w-1/2 pr-6">
+            <div class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                    <i class="fas fa-lightbulb text-yellow-500 mr-2"></i> Формирование идеи
+                </h2>
+                <div class="info-box">
+                    <p class="font-medium text-gray-700">Идея проекта:</p>
+                    <p class="text-gray-600 mb-2">Универсальная торговая онлайн-платформа для продавцов и покупателей</p>
+
+                    <p class="font-medium text-gray-700 mt-3">Ценность:</p>
+                    <ul class="list-disc pl-5 text-gray-600">
+                        <li>Покупатели: все товары в одном месте</li>
+                        <li>Продавцы: доступ к широкой клиентской базе</li>
+                    </ul>
+
+                    <p class="font-medium text-gray-700 mt-3">Актуальность:</p>
+                    <p class="text-gray-600">Рост e-commerce и востребованность новых каналов сбыта</p>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                    <i class="fas fa-project-diagram text-blue-500 mr-2"></i> Концепция проекта
+                </h2>
+                <div class="info-box">
+                    <div class="flex mb-4">
+                        <div class="w-1/2">
+                            <div class="flex flex-col items-center">
+                                <i class="fas fa-laptop text-3xl text-blue-600 mb-2"></i>
+                                <p class="text-center font-medium">Веб-портал</p>
+                            </div>
+                        </div>
+                        <div class="w-1/2">
+                            <div class="flex flex-col items-center">
+                                <i class="fas fa-mobile-alt text-3xl text-blue-600 mb-2"></i>
+                                <p class="text-center font-medium">Мобильное приложение</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="font-medium text-gray-700">Ключевые пользователи:</p>
+                    <div class="flex mt-2">
+                        <div class="w-1/2 pr-2">
+                            <p class="font-medium text-blue-600"><i class="fas fa-shopping-cart mr-1"></i> Покупатели</p>
+                            <p class="text-sm text-gray-600">Поиск и покупка товаров</p>
+                        </div>
+                        <div class="w-1/2 pl-2">
+                            <p class="font-medium text-blue-600"><i class="fas fa-store mr-1"></i> Продавцы</p>
+                            <p class="text-sm text-gray-600">Размещение товаров и управление заказами</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-1/2 pl-6">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                <i class="fas fa-bullseye text-red-500 mr-2"></i> SMART-цели проекта
+            </h2>
+
+            <div class="smart-item">
+                <div class="smart-letter bg-red-500 text-white">S</div>
+                <div>
+                    <p class="font-bold">Specific (Конкретные)</p>
+                    <p class="text-gray-600 text-sm">Запуск MVP маркетплейса (веб + моб) к 1 сентября 2025</p>
+                </div>
+            </div>
+
+            <div class="smart-item">
+                <div class="smart-letter bg-blue-500 text-white">M</div>
+                <div>
+                    <p class="font-bold">Measurable (Измеримые)</p>
+                    <p class="text-gray-600 text-sm">100+ продавцов, 1000+ товаров, 5000 пользователей за 3 месяца</p>
+                </div>
+            </div>
+
+            <div class="smart-item">
+                <div class="smart-letter bg-green-500 text-white">A</div>
+                <div>
+                    <p class="font-bold">Achievable (Достижимые)</p>
+                    <p class="text-gray-600 text-sm">Рейтинг 4.5/5 в App Store/Google Play, отклик страниц ≤ 2 сек</p>
+                </div>
+            </div>
+
+            <div class="smart-item">
+                <div class="smart-letter bg-yellow-500 text-white">R</div>
+                <div>
+                    <p class="font-bold">Relevant (Значимые)</p>
+                    <p class="text-gray-600 text-sm">Соответствие стратегии компании по выходу в цифровую торговлю</p>
+                </div>
+            </div>
+
+            <div class="smart-item">
+                <div class="smart-letter bg-purple-500 text-white">T</div>
+                <div>
+                    <p class="font-bold">Time-bound (Ограниченные во времени)</p>
+                    <p class="text-gray-600 text-sm">Конкретные сроки для отслеживания прогресса</p>
+                </div>
+            </div>
+
+            <div class="info-box mt-6">
+                <h3 class="font-semibold text-gray-800 mb-2">Функциональные требования</h3>
+                <div class="flex flex-wrap">
+                    <div class="flex items-center w-1/2 mb-2">
+                        <i class="fas fa-search text-blue-500 mr-2"></i>
+                        <span class="text-sm">Каталог с поиском</span>
+                    </div>
+                    <div class="flex items-center w-1/2 mb-2">
+                        <i class="fas fa-credit-card text-blue-500 mr-2"></i>
+                        <span class="text-sm">Онлайн-оплата</span>
+                    </div>
+                    <div class="flex items-center w-1/2 mb-2">
+                        <i class="fas fa-star text-blue-500 mr-2"></i>
+                        <span class="text-sm">Рейтинги и отзывы</span>
+                    </div>
+                    <div class="flex items-center w-1/2 mb-2">
+                        <i class="fas fa-user-circle text-blue-500 mr-2"></i>
+                        <span class="text-sm">Личные кабинеты</span>
+                    </div>
+                    <div class="flex items-center w-1/2">
+                        <i class="fas fa-truck text-blue-500 mr-2"></i>
+                        <span class="text-sm">Отслеживание доставки</span>
+                    </div>
+                    <div class="flex items-center w-1/2">
+                        <i class="fas fa-headset text-blue-500 mr-2"></i>
+                        <span class="text-sm">Поддержка клиентов</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

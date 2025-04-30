@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Планирование трудовых ресурсов</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #7E22CE;
+            padding: 20px 40px;
+            color: white;
+        }
+        .role-card {
+            border-radius: 8px;
+            padding: 15px;
+            height: 100%;
+            transition: transform 0.2s;
+            border: 1px solid #e5e7eb;
+        }
+        .role-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .role-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .matrix-header {
+            font-weight: bold;
+            text-align: center;
+            background-color: #f3f4f6;
+        }
+        .responsibility-cell {
+            width: 25%;
+            text-align: center;
+            padding: 8px;
+        }
+        .task-cell {
+            width: 25%;
+            padding: 8px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+    <div class="header">
+        <h1 class="text-3xl font-bold">Планирование трудовых ресурсов</h1>
+    </div>
+
+    <div class="p-6">
+        <div class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                <i class="fas fa-tasks text-purple-600 mr-2"></i> Матрица ответственности
+            </h2>
+
+            <div class="overflow-hidden border border-gray-300 rounded-lg">
+                <table class="w-full border-collapse">
+                    <thead>
+                    <tr class="bg-purple-100">
+                        <th class="border border-gray-300 p-2 text-left">Задача проекта</th>
+                        <th class="border border-gray-300 p-2 text-center">
+                            <div class="flex flex-col items-center">
+                                <span class="bg-blue-500 text-white px-2 py-1 rounded-md mb-1">O</span>
+                                <span>Отвечает</span>
+                            </div>
+                        </th>
+                        <th class="border border-gray-300 p-2 text-center">
+                            <div class="flex flex-col items-center">
+                                <span class="bg-yellow-500 text-white px-2 py-1 rounded-md mb-1">К</span>
+                                <span>Контролирует</span>
+                            </div>
+                        </th>
+                        <th class="border border-gray-300 p-2 text-center">
+                            <div class="flex flex-col items-center">
+                                <span class="bg-green-500 text-white px-2 py-1 rounded-md mb-1">С</span>
+                                <span>Согласует</span>
+                            </div>
+                        </th>
+                        <th class="border border-gray-300 p-2 text-center">
+                            <div class="flex flex-col items-center">
+                                <span class="bg-red-500 text-white px-2 py-1 rounded-md mb-1">У</span>
+                                <span>Утверждает</span>
+                            </div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="border border-gray-300 p-2 font-medium">Дизайн UX/UI</td>
+                        <td class="border border-gray-300 p-2 text-center">UX/UI дизайнер</td>
+                        <td class="border border-gray-300 p-2 text-center">Руководитель проекта</td>
+                        <td class="border border-gray-300 p-2 text-center">Маркетолог заказчика</td>
+                        <td class="border border-gray-300 p-2 text-center">Заказчик</td>
+                    </tr>
+                    <tr class="bg-gray-50">
+                        <td class="border border-gray-300 p-2 font-medium">Разработка back-end</td>
+                        <td class="border border-gray-300 p-2 text-center">Ведущий back-end разработчик</td>
+                        <td class="border border-gray-300 p-2 text-center">Технический руководитель</td>
+                        <td class="border border-gray-300 p-2 text-center">Бизнес-аналитик</td>
+                        <td class="border border-gray-300 p-2 text-center">Руководитель проекта</td>
+                    </tr>
+                    <tr>
+                        <td class="border border-gray-300 p-2 font-medium">Тестирование</td>
+                        <td class="border border-gray-300 p-2 text-center">Инженер QA</td>
+                        <td class="border border-gray-300 p-2 text-center">Руководитель проекта</td>
+                        <td class="border border-gray-300 p-2 text-center">Ведущий разработчик</td>
+                        <td class="border border-gray-300 p-2 text-center">Руководитель проекта</td>
+                    </tr>
+                    <tr class="bg-gray-50">
+                        <td class="border border-gray-300 p-2 font-medium">Внедрение (релиз)</td>
+                        <td class="border border-gray-300 p-2 text-center">Инженер DevOps</td>
+                        <td class="border border-gray-300 p-2 text-center">Руководитель проекта</td>
+                        <td class="border border-gray-300 p-2 text-center">Бизнес-аналитик</td>
+                        <td class="border border-gray-300 p-2 text-center">Заказчик</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                <i class="fas fa-users text-purple-600 mr-2"></i> Роли команды по Белбину
+            </h2>
+
+            <div class="grid grid-cols-3 gap-4">
+                <div class="role-card bg-blue-50">
+                    <div class="flex items-start">
+                        <div class="role-icon bg-blue-100">
+                            <i class="fas fa-compass text-blue-600"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="font-bold text-blue-700">Координатор</h3>
+                            <p class="text-sm text-gray-600 mb-1">Руководитель проекта</p>
+                            <p class="text-xs text-gray-500">Организует работу команды, распределяет задачи, определяет приоритеты</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="role-card bg-green-50">
+                    <div class="flex items-start">
+                        <div class="role-icon bg-green-100">
+                            <i class="fas fa-lightbulb text-green-600"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="font-bold text-green-700">Генератор идей</h3>
+                            <p class="text-sm text-gray-600 mb-1">UX/UI дизайнер</p>
+                            <p class="text-xs text-gray-500">Предлагает креативные решения, улучшения интерфейса</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="role-card bg-yellow-50">
+                    <div class="flex items-start">
+                        <div class="role-icon bg-yellow-100">
+                            <i class="fas fa-cogs text-yellow-600"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="font-bold text-yellow-700">Реализатор</h3>
+                            <p class="text-sm text-gray-600 mb-1">Разработчики</p>
+                            <p class="text-xs text-gray-500">Воплощают идеи в код, создают продукт согласно плану</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="role-card bg-red-50">
+                    <div class="flex items-start">
+                        <div class="role-icon bg-red-100">
+                            <i class="fas fa-check-double text-red-600"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="font-bold text-red-700">Доводящий до конца</h3>
+                            <p class="text-sm text-gray-600 mb-1">Инженер QA</p>
+                            <p class="text-xs text-gray-500">Проверяет качество, ищет и устраняет недостатки</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="role-card bg-indigo-50">
+                    <div class="flex items-start">
+                        <div class="role-icon bg-indigo-100">
+                            <i class="fas fa-balance-scale text-indigo-600"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="font-bold text-indigo-700">Аналитик-оценщик</h3>
+                            <p class="text-sm text-gray-600 mb-1">Бизнес-аналитик</p>
+                            <p class="text-xs text-gray-500">Оценивает требования, анализирует риски и выгоды</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="role-card bg-pink-50">
+                    <div class="flex items-start">
+                        <div class="role-icon bg-pink-100">
+                            <i class="fas fa-network-wired text-pink-600"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="font-bold text-pink-700">Исследователь ресурсов</h3>
+                            <p class="text-sm text-gray-600 mb-1">Маркетолог</p>
+                            <p class="text-xs text-gray-500">Изучает рынки, партнерства, привлекает пользователей</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="role-card bg-orange-50">
+                    <div class="flex items-start">
+                        <div class="role-icon bg-orange-100">
+                            <i class="fas fa-bolt text-orange-600"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="font-bold text-orange-700">Формирователь</h3>
+                            <p class="text-sm text-gray-600 mb-1">Технический руководитель</p>
+                            <p class="text-xs text-gray-500">Нацелен на результат, преодолевает препятствия</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="role-card bg-cyan-50">
+                    <div class="flex items-start">
+                        <div class="role-icon bg-cyan-100">
+                            <i class="fas fa-code text-cyan-600"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="font-bold text-cyan-700">Специалист</h3>
+                            <p class="text-sm text-gray-600 mb-1">Ведущий back-end разработчик</p>
+                            <p class="text-xs text-gray-500">Обладает глубокими техническими знаниями</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="role-card bg-violet-50">
+                    <div class="flex items-start">
+                        <div class="role-icon bg-violet-100">
+                            <i class="fas fa-hands-helping text-violet-600"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="font-bold text-violet-700">Коллективист</h3>
+                            <p class="text-sm text-gray-600 mb-1">Frontend-разработчик</p>
+                            <p class="text-xs text-gray-500">Поддерживает командный дух, сглаживает конфликты</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4 bg-purple-50 p-4 rounded-lg border border-purple-200">
+                <p class="text-sm text-purple-800 text-center">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    Баланс командных ролей обеспечивает продуктивность: у каждого участника есть своя сильная сторона,
+                    и роли дополняют друг друга, минимизируя пробелы в компетенциях команды.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

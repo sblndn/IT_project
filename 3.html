@@ -1,0 +1,300 @@
+<html lang="ru"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Планирование содержания проекта</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #4F46E5;
+            padding: 20px 40px;
+            color: white;
+        }
+        .lifecycle-phase {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 180px;
+        }
+        .lifecycle-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+            z-index: 2;
+        }
+        .lifecycle-line {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            height: 2px;
+            background-color: #CBD5E1;
+            z-index: 1;
+        }
+        .mermaid-container {
+            width: 100%;
+            margin-top: 20px;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 15px;
+        }
+    </style>
+    <style>
+        .genspark-badge-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .genspark-modal {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 10000;
+            justify-content: end;
+        }
+
+        .genspark-modal-content {
+            background-color: white;
+            border-radius: 8px;
+            max-width: 450px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+        }
+        @media (max-width: 768px) {
+            .genspark-modal-content {
+                max-width: 90%;
+            }
+        }
+
+        .genspark-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .genspark-title {
+            margin-bottom: 8px;
+            font-weight: normal;
+            display: inline;
+            font-size: 14px;
+        }
+
+        .genspark-report {
+            color: #909499;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-bottom: 14px;
+            display: inline;
+        }
+
+        .genspark-info {
+            margin: 25px 0;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .genspark-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .genspark-remove-btn {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            color: #333;
+            padding: 4px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            flex: 1;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .genspark-go-btn {
+            background-color: #222;
+            border: none;
+            color: white;
+            padding: 4px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            flex: 1;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+    </style><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script></head>
+<body>
+<div class="slide">
+    <div class="header">
+        <h1 class="text-3xl font-bold">Планирование содержания проекта</h1>
+    </div>
+
+    <div class="p-8">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+            <i class="fas fa-project-diagram text-purple-600 mr-2"></i> Фазы жизненного цикла проекта
+        </h2>
+
+        <div class="relative flex justify-between my-8">
+            <div class="lifecycle-line w-full"></div>
+
+            <div class="lifecycle-phase">
+                <div class="lifecycle-icon bg-blue-100">
+                    <i class="fas fa-flag text-2xl text-blue-600"></i>
+                </div>
+                <p class="font-medium text-center">Инициация</p>
+                <p class="text-xs text-gray-500 text-center">Формулирование идеи, обоснование проекта</p>
+            </div>
+
+            <div class="lifecycle-phase">
+                <div class="lifecycle-icon bg-green-100">
+                    <i class="fas fa-tasks text-2xl text-green-600"></i>
+                </div>
+                <p class="font-medium text-center">Планирование</p>
+                <p class="text-xs text-gray-500 text-center">Разработка требований и планов работ</p>
+            </div>
+
+            <div class="lifecycle-phase">
+                <div class="lifecycle-icon bg-yellow-100">
+                    <i class="fas fa-code text-2xl text-yellow-600"></i>
+                </div>
+                <p class="font-medium text-center">Исполнение</p>
+                <p class="text-xs text-gray-500 text-center">Разработка и создание продукта</p>
+            </div>
+
+            <div class="lifecycle-phase">
+                <div class="lifecycle-icon bg-red-100">
+                    <i class="fas fa-chart-line text-2xl text-red-600"></i>
+                </div>
+                <p class="font-medium text-center">Мониторинг</p>
+                <p class="text-xs text-gray-500 text-center">Отслеживание прогресса, контроль</p>
+            </div>
+
+            <div class="lifecycle-phase">
+                <div class="lifecycle-icon bg-purple-100">
+                    <i class="fas fa-check-circle text-2xl text-purple-600"></i>
+                </div>
+                <p class="font-medium text-center">Завершение</p>
+                <p class="text-xs text-gray-500 text-center">Приемка, документация, закрытие</p>
+            </div>
+        </div>
+
+        <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">
+            <i class="fas fa-sitemap text-blue-600 mr-2"></i> Структура проекта: этапы и вехи
+        </h2>
+
+        <div class="mermaid-container">
+            <pre class="mermaid" data-processed="true"><svg id="mermaid-1746039566588" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="flowchart" style="max-width: 1826px;" viewBox="0 0 1826 326" role="graphics-document document" aria-roledescription="flowchart-v2"><style>#mermaid-1746039566588{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#000000;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-1746039566588 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#mermaid-1746039566588 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#mermaid-1746039566588 .error-icon{fill:#552222;}#mermaid-1746039566588 .error-text{fill:#552222;stroke:#552222;}#mermaid-1746039566588 .edge-thickness-normal{stroke-width:1px;}#mermaid-1746039566588 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-1746039566588 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-1746039566588 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-1746039566588 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-1746039566588 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-1746039566588 .marker{fill:#666;stroke:#666;}#mermaid-1746039566588 .marker.cross{stroke:#666;}#mermaid-1746039566588 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-1746039566588 p{margin:0;}#mermaid-1746039566588 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#000000;}#mermaid-1746039566588 .cluster-label text{fill:#333;}#mermaid-1746039566588 .cluster-label span{color:#333;}#mermaid-1746039566588 .cluster-label span p{background-color:transparent;}#mermaid-1746039566588 .label text,#mermaid-1746039566588 span{fill:#000000;color:#000000;}#mermaid-1746039566588 .node rect,#mermaid-1746039566588 .node circle,#mermaid-1746039566588 .node ellipse,#mermaid-1746039566588 .node polygon,#mermaid-1746039566588 .node path{fill:#eee;stroke:#999;stroke-width:1px;}#mermaid-1746039566588 .rough-node .label text,#mermaid-1746039566588 .node .label text,#mermaid-1746039566588 .image-shape .label,#mermaid-1746039566588 .icon-shape .label{text-anchor:middle;}#mermaid-1746039566588 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-1746039566588 .rough-node .label,#mermaid-1746039566588 .node .label,#mermaid-1746039566588 .image-shape .label,#mermaid-1746039566588 .icon-shape .label{text-align:center;}#mermaid-1746039566588 .node.clickable{cursor:pointer;}#mermaid-1746039566588 .root .anchor path{fill:#666!important;stroke-width:0;stroke:#666;}#mermaid-1746039566588 .arrowheadPath{fill:#333333;}#mermaid-1746039566588 .edgePath .path{stroke:#666;stroke-width:2.0px;}#mermaid-1746039566588 .flowchart-link{stroke:#666;fill:none;}#mermaid-1746039566588 .edgeLabel{background-color:white;text-align:center;}#mermaid-1746039566588 .edgeLabel p{background-color:white;}#mermaid-1746039566588 .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#mermaid-1746039566588 .labelBkg{background-color:rgba(255, 255, 255, 0.5);}#mermaid-1746039566588 .cluster rect{fill:hsl(0, 0%, 98.9215686275%);stroke:#707070;stroke-width:1px;}#mermaid-1746039566588 .cluster text{fill:#333;}#mermaid-1746039566588 .cluster span{color:#333;}#mermaid-1746039566588 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(-160, 0%, 93.3333333333%);border:1px solid #707070;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-1746039566588 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#000000;}#mermaid-1746039566588 rect.text{fill:none;stroke-width:0;}#mermaid-1746039566588 .icon-shape,#mermaid-1746039566588 .image-shape{background-color:white;text-align:center;}#mermaid-1746039566588 .icon-shape p,#mermaid-1746039566588 .image-shape p{background-color:white;padding:2px;}#mermaid-1746039566588 .icon-shape rect,#mermaid-1746039566588 .image-shape rect{opacity:0.5;background-color:white;fill:white;}#mermaid-1746039566588 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style><g><marker id="mermaid-1746039566588_flowchart-v2-pointEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-1746039566588_flowchart-v2-pointStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="4.5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 5 L 10 10 L 10 0 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-1746039566588_flowchart-v2-circleEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="11" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="mermaid-1746039566588_flowchart-v2-circleStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-1" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="mermaid-1746039566588_flowchart-v2-crossEnd" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="12" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-1746039566588_flowchart-v2-crossStart" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="-1" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path d="M806.195,42.166L694.829,49.639C583.464,57.111,360.732,72.055,249.366,83.028C138,94,138,101,138,104.5L138,108" id="L_A_B_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1746039566588_flowchart-v2-pointEnd)"></path><path d="M806.195,46.944L746.496,53.62C686.797,60.296,567.398,73.648,507.699,83.824C448,94,448,101,448,104.5L448,108" id="L_A_C_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1746039566588_flowchart-v2-pointEnd)"></path><path d="M832.519,62L820.099,66.167C807.679,70.333,782.84,78.667,770.42,86.333C758,94,758,101,758,104.5L758,108" id="L_A_D_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1746039566588_flowchart-v2-pointEnd)"></path><path d="M993.481,62L1005.901,66.167C1018.321,70.333,1043.16,78.667,1055.58,86.333C1068,94,1068,101,1068,104.5L1068,108" id="L_A_E_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1746039566588_flowchart-v2-pointEnd)"></path><path d="M1019.805,46.944L1079.504,53.62C1139.203,60.296,1258.602,73.648,1318.301,83.824C1378,94,1378,101,1378,104.5L1378,108" id="L_A_F_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1746039566588_flowchart-v2-pointEnd)"></path><path d="M1019.805,42.166L1131.171,49.639C1242.536,57.111,1465.268,72.055,1576.634,83.028C1688,94,1688,101,1688,104.5L1688,108" id="L_A_G_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1746039566588_flowchart-v2-pointEnd)"></path><path d="M138,190L138,194.167C138,198.333,138,206.667,138,216.333C138,226,138,237,138,242.5L138,248" id="L_B_B1_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1746039566588_flowchart-v2-pointEnd)"></path><path d="M448,190L448,194.167C448,198.333,448,206.667,448,214.333C448,222,448,229,448,232.5L448,236" id="L_C_C1_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1746039566588_flowchart-v2-pointEnd)"></path><path d="M758,190L758,194.167C758,198.333,758,206.667,758,214.333C758,222,758,229,758,232.5L758,236" id="L_D_D1_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1746039566588_flowchart-v2-pointEnd)"></path><path d="M1068,190L1068,194.167C1068,198.333,1068,206.667,1068,214.333C1068,222,1068,229,1068,232.5L1068,236" id="L_E_E1_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1746039566588_flowchart-v2-pointEnd)"></path><path d="M1378,190L1378,194.167C1378,198.333,1378,206.667,1378,214.333C1378,222,1378,229,1378,232.5L1378,236" id="L_F_F1_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1746039566588_flowchart-v2-pointEnd)"></path><path d="M1688,190L1688,194.167C1688,198.333,1688,206.667,1688,214.333C1688,222,1688,229,1688,232.5L1688,236" id="L_G_G1_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1746039566588_flowchart-v2-pointEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="flowchart-A-0" transform="translate(913, 35)"><rect class="basic label-container" style="fill:#4F46E5 !important" x="-106.8046875" y="-27" width="213.609375" height="54"></rect><g class="label" style="color:white !important" transform="translate(-76.8046875, -12)"><rect></rect><foreignObject width="153.609375" height="24"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel "><p>Проект Маркетплейс</p></span></div></foreignObject></g></g><g class="node default" id="flowchart-B-1" transform="translate(138, 151)"><rect class="basic label-container" style="" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="nodeLabel " style="font-size: 20px; font-weight: normal; text-decoration: none; font-style: normal; color: rgb(0, 0, 0); text-align: center;">1 Этап</span></div></foreignObject></g></g><g class="node default" id="flowchart-C-3" transform="translate(448, 151)"><rect class="basic label-container" style="" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="nodeLabel " style="font-size: 20px; font-weight: normal; text-decoration: none; font-style: normal; color: rgb(0, 0, 0); text-align: center;">2 Этап</span></div></foreignObject></g></g><g class="node default  " id="flowchart-D-5" transform="translate(758, 151)"><rect class="basic label-container" style="" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="nodeLabel " style="font-size: 20px; font-weight: normal; text-decoration: none; font-style: normal; color: rgb(0, 0, 0); text-align: center;">3 Этап</span></div></foreignObject></g></g><g class="node default  " id="flowchart-E-7" transform="translate(1068, 151)"><rect class="basic label-container" style="" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="nodeLabel " style="font-size: 20px; font-weight: normal; text-decoration: none; font-style: normal; color: rgb(0, 0, 0); text-align: center;">4 Этап</span></div></foreignObject></g></g><g class="node default  " id="flowchart-F-9" transform="translate(1378, 151)"><rect class="basic label-container" style="" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="nodeLabel " style="font-size: 20px; font-weight: normal; text-decoration: none; font-style: normal; color: rgb(0, 0, 0); text-align: center;">5 Этап</span></div></foreignObject></g></g><g class="node default  " id="flowchart-G-11" transform="translate(1688, 151)"><rect class="basic label-container" style="" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="nodeLabel " style="font-size: 20px; font-weight: normal; text-decoration: none; font-style: normal; color: rgb(0, 0, 0); text-align: center;">6 Этап</span></div></foreignObject></g></g><g class="node default  " id="flowchart-B1-13" transform="translate(138, 279)"><rect class="basic label-container" style="fill:#3B82F6 !important" x="-117.71875" y="-27" width="235.4375" height="54"></rect><g class="label" style="color:white !important" transform="translate(-87.71875, -12)"><rect></rect><foreignObject width="175.4375" height="24"><div style="color: white !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel "><p>Веха: Утвержденное ТЗ</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-C1-15" transform="translate(448, 279)"><rect class="basic label-container" style="fill:#3B82F6 !important" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="color:white !important" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div style="color: white !important; display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel "><p>Веха: Дизайн-проект интерфейсов</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-D1-17" transform="translate(758, 279)"><rect class="basic label-container" style="fill:#3B82F6 !important" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="color:white !important" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div style="color: white !important; display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel "><p>Веха: Бета-версия системы</p></span></div></foreignObject></g></g><g class="node default" id="flowchart-E1-19" transform="translate(1068, 279)"><rect class="basic label-container" style="fill:#3B82F6 !important" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="color:white !important" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div style="color: white !important; display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel "><p>Веха: Акт приемочного тестирования</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-F1-21" transform="translate(1378, 279)"><rect class="basic label-container" style="fill:#3B82F6 !important" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="color:white !important" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div style="color: white !important; display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel "><p>Веха: Релиз MVP маркетплейса</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-G1-23" transform="translate(1688, 279)"><rect class="basic label-container" style="fill:#3B82F6 !important" x="-130" y="-39" width="260" height="78"></rect><g class="label" style="color:white !important" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div style="color: white !important; display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:white !important" class="nodeLabel "><p>Веха: Итоговый акт приемки</p></span></div></foreignObject></g></g></g></g></g></svg></pre>
+        </div>
+
+        <div class="flex mt-6">
+            <div class="w-1/2 pr-4">
+                <h3 class="text-xl font-medium text-gray-800 mb-3">
+                    <i class="fas fa-list-ul text-indigo-500 mr-2"></i> Ключевые задачи
+                </h3>
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li class="text-gray-700">Разработка бэкенд-сервиса и API</li>
+                        <li class="text-gray-700">Разработка фронтенда веб-сайта</li>
+                        <li class="text-gray-700">Разработка мобильного приложения</li>
+                        <li class="text-gray-700">Интеграция с платежными системами</li>
+                        <li class="text-gray-700">Функциональное и нагрузочное тестирование</li>
+                        <li class="text-gray-700">Публикация в App Store/Google Play</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="w-1/2 pl-4">
+                <h3 class="text-xl font-medium text-gray-800 mb-3">
+                    <i class="fas fa-clipboard-check text-green-500 mr-2"></i> Структура WBS
+                </h3>
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <p class="text-sm text-gray-700 mb-2">
+                        <span class="font-medium">Иерархическая структура работ:</span>
+                    </p>
+                    <div class="flex items-center mb-1">
+                        <i class="fas fa-caret-right text-blue-500 mr-1"></i>
+                        <p class="text-gray-700 text-sm">1. Инициация</p>
+                    </div>
+                    <div class="flex items-center mb-1">
+                        <i class="fas fa-caret-right text-blue-500 mr-1"></i>
+                        <p class="text-gray-700 text-sm">2. Планирование</p>
+                    </div>
+                    <div class="flex items-center mb-1">
+                        <i class="fas fa-caret-right text-blue-500 mr-1"></i>
+                        <p class="text-gray-700 text-sm">3. Реализация</p>
+                    </div>
+                    <div class="flex items-center mb-1">
+                        <i class="fas fa-caret-right text-blue-500 mr-1"></i>
+                        <p class="text-gray-700 text-sm">4. Тестирование и контроль качества</p>
+                    </div>
+                    <div class="flex items-center mb-1">
+                        <i class="fas fa-caret-right text-blue-500 mr-1"></i>
+                        <p class="text-gray-700 text-sm">5. Внедрение (Deployment)</p>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-caret-right text-blue-500 mr-1"></i>
+                        <p class="text-gray-700 text-sm">6. Завершение проекта</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        mermaid.initialize({ startOnLoad: true, theme: 'neutral', securityLevel: 'loose' });
+    });
+</script>
+
+<script src="https://www.genspark.ai/slide-inner.js?_v=1"></script>
+<script id="html_badge_script1">
+    window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+    "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDvaR5ucDlON6tF6Zf%2FGpt%2FbWTKaTG0EoU6ND4f%2F6q2CishyEHHKHCXpOSTfX8tx5ebUh2w6gcerSTC%2Fx1zrePpZV%2F0mTga5z1WCJj3BC6F%2BgMsqdzlCZMvzYaYsO%2B83V%2Bn7DxlO2neaMDCdFnnZZHk2BloO%2B58oo%2BV6Q2O%2FuyBWVUON6%2Fn7GiUd3oNqvwCS4VynfV%2FUbD2CIuyRaHeTugiPXu3uqKUEN5LkQdeIKuet4FOmI1GtoXNSoGJWbsZvaByXnLxLdwOTMs3YYjjzRCbZKaQmtDnCMClZejvHXnLTXElAgQ%2B2WPL%2BGiw3KvUirXYQ2ELi7Qu6fkgRVS9Q45NfGIMGrbDWh0eBT0JzGTdfS%2Bvqe8nxCdJHs7MI8%2B4q4bCH4ZhcAZLHAFbbA%2BzYIMmj%2BRupZFjIL%2Bp4yXekolKtE6h047QC36CuBds9UZ%2Fgd4D6NdLefc6Mxa%2B%2Fuk9gj2mNMTriYkpgCcF%2BllX1bPvTZze3t7PQGbxOBDsGR4wW0MAuEwJ6pJIn1U%2BxocXHhrNV%2FObx29e02Wxle%2BdaVGKikYVZD9apXji8HZ4ejRw7%2BQgXeThcBsmxx3whizOA6I754%2FWLpRh%2Boa6HhVz1StLsj09hDBtpxIG77Xd4mY8accDgLnPF854bYEyzDonTm%2BbDqATxLUxhoyXdugxNVWExTwpUZ%2FbAqr0kCSOOJY0f41MTjmK04ANd%2BOEsNB7GTBHV58e718lAU%2BxYUwWC1TRSd";
+    window.__genspark_locale = "en-US";
+    window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDvaR5ucDlON6tF6Zf/Gpt/bWTKaTG0EoU6ND4f/6q2CishyEHHKHCXpOSTfX8tx5ebUh2w6gcerSTC/x1zrePpZV/0mTga5z1WCJj3BC6F+gMsqdzlCZMvzYaYsO+83V+n7DxlO2neaMDCdFnnZZHk2BloO+58oo+V6Q2O/uyBWVUON6/n7GiUd3oNqvwCS4VynfV/UbD2CIuyRaHeTugiPXu3uqKUEN5LkQdeIKuet4FOmI1GtoXNSoGJWbsZvaByXnLxLdwOTMs3YYjjzRCbZKaQmtDnCMClZejvHXnLTXElAgQ+2WPL+Giw3KvUirXYQ2ELi7Qu6fkgRVS9Q45NfGIMGrbDWh0eBT0JzGTdfS+vqe8nxCdJHs7MI8+4q4bCH4ZhcAZLHAFbbA+zYIMmj+RupZFjIL+p4yXekolKtE6h047QC36CuBds9UZ/gd4D6NdLefc6Mxa+/uk9gj2mNMTriYkpgCcF+llX1bPvTZze3t7PQGbxOBDsGR4wW0MAuEwJ6pJIn1U+xocXHhrNV/Obx29e02Wxle+daVGKikYVZD9apXji8HZ4ejRw7+QgXeThcBsmxx3whizOA6I754/WLpRh+oa6HhVz1StLsj09hDBtpxIG77Xd4mY8accDgLnPF854bYEyzDonTm+bDqATxLUxhoyXdugxNVWExTwpUZ/bAqr0kCSOOJY0f41MTjmK04ANd+OEsNB7GTBHV58e718lAU+xYUwWC1TRSd";
+</script>
+
+<script id="html_badge_script2" src="https://www.genspark.ai/html_badge.js"></script>
+<div class="mermaidTooltip" style="opacity: 0;"></div></body></html>

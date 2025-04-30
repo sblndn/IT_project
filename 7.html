@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Планирование бюджета проекта</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #047857;
+            padding: 20px 40px;
+            color: white;
+        }
+        .resource-bar {
+            height: 30px;
+            border-radius: 4px;
+        }
+        .chart-container {
+            position: relative;
+            height: 250px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+    <div class="header">
+        <h1 class="text-3xl font-bold">Планирование бюджета проекта</h1>
+    </div>
+
+    <div class="p-6">
+        <div class="grid grid-cols-2 gap-6">
+            <!-- Left Column -->
+            <div>
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                    <i class="fas fa-calendar-alt text-green-600 mr-2"></i> Календарный план с распределением ресурсов
+                </h2>
+
+                <div class="bg-gray-50 p-4 rounded-lg shadow-sm mb-4">
+                    <table class="w-full text-sm">
+                        <thead>
+                        <tr class="bg-gray-200">
+                            <th class="py-2 px-3 text-left">Этап</th>
+                            <th class="py-2 px-3 text-center">Длительность</th>
+                            <th class="py-2 px-3 text-center">Состав команды</th>
+                            <th class="py-2 px-3 text-center">Трудозатраты</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="border-b border-gray-200">
+                            <td class="py-2 px-3 font-medium">Планирование</td>
+                            <td class="py-2 px-3 text-center">1 месяц</td>
+                            <td class="py-2 px-3 text-center">3 чел.</td>
+                            <td class="py-2 px-3 text-center">3 чел.-мес</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 bg-gray-50">
+                            <td class="py-2 px-3 font-medium">Дизайн</td>
+                            <td class="py-2 px-3 text-center">1 месяц</td>
+                            <td class="py-2 px-3 text-center">2 чел.</td>
+                            <td class="py-2 px-3 text-center">2 чел.-мес</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="py-2 px-3 font-medium">Разработка</td>
+                            <td class="py-2 px-3 text-center">4 месяца</td>
+                            <td class="py-2 px-3 text-center">5 чел.</td>
+                            <td class="py-2 px-3 text-center">20 чел.-мес</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 bg-gray-50">
+                            <td class="py-2 px-3 font-medium">Тестирование</td>
+                            <td class="py-2 px-3 text-center">1 месяц</td>
+                            <td class="py-2 px-3 text-center">3 чел.</td>
+                            <td class="py-2 px-3 text-center">3 чел.-мес</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-3 font-medium">Внедрение</td>
+                            <td class="py-2 px-3 text-center">1 месяц</td>
+                            <td class="py-2 px-3 text-center">2 чел.</td>
+                            <td class="py-2 px-3 text-center">2 чел.-мес</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr class="bg-green-50">
+                            <td class="py-2 px-3 font-bold">Итого</td>
+                            <td class="py-2 px-3 text-center font-bold">8 месяцев</td>
+                            <td class="py-2 px-3 text-center">–</td>
+                            <td class="py-2 px-3 text-center font-bold">28 чел.-мес</td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <!-- Resource Distribution Visualization -->
+                <div class="mt-6">
+                    <h3 class="text-xl font-medium text-gray-700 mb-2">Распределение команды по этапам:</h3>
+
+                    <div class="flex items-center mb-3">
+                        <div class="w-1/3 pr-2 text-right text-sm">Январь</div>
+                        <div class="w-2/3">
+                            <div class="resource-bar bg-blue-500 text-white text-center flex items-center justify-center" style="width: 60%">
+                                3 чел.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center mb-3">
+                        <div class="w-1/3 pr-2 text-right text-sm">Февраль</div>
+                        <div class="w-2/3">
+                            <div class="resource-bar bg-blue-400 text-white text-center flex items-center justify-center" style="width: 40%">
+                                2 чел.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center mb-3">
+                        <div class="w-1/3 pr-2 text-right text-sm">Март-Июнь</div>
+                        <div class="w-2/3">
+                            <div class="resource-bar bg-blue-600 text-white text-center flex items-center justify-center" style="width: 100%">
+                                5 чел.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center mb-3">
+                        <div class="w-1/3 pr-2 text-right text-sm">Июль</div>
+                        <div class="w-2/3">
+                            <div class="resource-bar bg-blue-500 text-white text-center flex items-center justify-center" style="width: 60%">
+                                3 чел.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center mb-3">
+                        <div class="w-1/3 pr-2 text-right text-sm">Август</div>
+                        <div class="w-2/3">
+                            <div class="resource-bar bg-blue-400 text-white text-center flex items-center justify-center" style="width: 40%">
+                                2 чел.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div>
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                    <i class="fas fa-coins text-green-600 mr-2"></i> Бюджет проекта (оценка затрат)
+                </h2>
+
+                <div class="bg-gray-50 p-4 rounded-lg shadow-sm mb-6">
+                    <table class="w-full">
+                        <thead>
+                        <tr class="bg-gray-200">
+                            <th class="py-3 px-4 text-left">Статья расходов</th>
+                            <th class="py-3 px-4 text-right">Оценочная сумма</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="border-b border-gray-200">
+                            <td class="py-3 px-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-users text-blue-500 mr-2"></i>
+                                    <span>Трудовые ресурсы (28 чел.-мес)</span>
+                                </div>
+                            </td>
+                            <td class="py-3 px-4 text-right font-medium">~5,6 млн руб.</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 bg-gray-50">
+                            <td class="py-3 px-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-server text-purple-500 mr-2"></i>
+                                    <span>Инфраструктура и ПО</span>
+                                </div>
+                            </td>
+                            <td class="py-3 px-4 text-right font-medium">~1,0 млн руб.</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="py-3 px-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+                                    <span>Резерв на риски (10%)</span>
+                                </div>
+                            </td>
+                            <td class="py-3 px-4 text-right font-medium">~0,6 млн руб.</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr class="bg-green-100">
+                            <td class="py-3 px-4 font-bold text-green-800">ИТОГО прогноз</td>
+                            <td class="py-3 px-4 text-right font-bold text-green-800">~7,2 млн руб.</td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <!-- Budget Chart -->
+                <div class="chart-container">
+                    <canvas id="budgetChart"></canvas>
+                </div>
+
+                <div class="mt-4 bg-green-50 p-4 rounded-lg border border-green-200">
+                    <div class="flex items-start">
+                        <i class="fas fa-info-circle text-green-600 mt-1 mr-2 text-lg"></i>
+                        <div>
+                            <p class="text-sm text-green-800">
+                                Основную долю бюджета (~78%) составляют трудозатраты команды разработки.
+                                Ежемесячно руководитель проекта контролирует исполнение бюджета для своевременного обнаружения перерасхода.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Create Budget Pie Chart
+        const budgetCtx = document.getElementById('budgetChart').getContext('2d');
+        const budgetChart = new Chart(budgetCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Трудовые ресурсы', 'Инфраструктура и ПО', 'Резерв на риски'],
+                datasets: [{
+                    data: [5.6, 1.0, 0.6],
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.7)',  // blue
+                        'rgba(124, 58, 237, 0.7)',  // purple
+                        'rgba(234, 179, 8, 0.7)'    // yellow
+                    ],
+                    borderColor: [
+                        'rgba(59, 130, 246, 1)',
+                        'rgba(124, 58, 237, 1)',
+                        'rgba(234, 179, 8, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            boxWidth: 15,
+                            padding: 15,
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += context.raw + ' млн руб. (' +
+                                Math.round(context.raw / 7.2 * 100) + '%)';
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
